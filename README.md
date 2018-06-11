@@ -1,6 +1,7 @@
 ![Bower version](https://img.shields.io/bower/v/vaadin-confirm-dialog.svg)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/vaadin/vaadin-confirm-dialog)
 [![Build Status](https://travis-ci.org/vaadin/vaadin-confirm-dialog.svg?branch=master)](https://travis-ci.org/vaadin/vaadin-confirm-dialog)
+[![Coverage Status](https://coveralls.io/repos/github/vaadin/vaadin-confirm-dialog/badge.svg?branch=master)](https://coveralls.io/github/vaadin/vaadin-confirm-dialog?branch=master)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaadin/web-components?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # &lt;vaadin-confirm-dialog&gt;
@@ -10,7 +11,7 @@
 [API documentation ↗](https://vaadin.com/components/vaadin-confirm-dialog/html-api)
 
 
-[&lt;vaadin-confirm-dialog&gt;](https://vaadin.com/components/vaadin-confirm-dialog) is a [Polymer 2](http://polymer-project.org) element providing &lt;element-functionality&gt;, part of the [Vaadin components](https://vaadin.com/components).
+[&lt;vaadin-confirm-dialog&gt;](https://vaadin.com/components/vaadin-confirm-dialog) is a Web Component providing &lt;element-functionality&gt;, part of the [Vaadin components](https://vaadin.com/components).
 
 <!--
 ```
@@ -32,23 +33,60 @@
 [<img src="https://raw.githubusercontent.com/vaadin/vaadin-confirm-dialog/master/screenshot.png" width="200" alt="Screenshot of vaadin-confirm-dialog">](https://vaadin.com/components/vaadin-confirm-dialog)
 
 
+## Installation
+
+The Vaadin components are distributed as Bower and npm packages.
+Please note that the version range is the same, as the API has not changed.
+You should not mix Bower and npm versions in the same application, though.
+
+Unlike the official Polymer Elements, the converted Polymer 3 compatible Vaadin components
+are only published on npm, not pushed to GitHub repositories.
+
+### Polymer 2 and HTML Imports compatible version
+
+Install `vaadin-confirm-dialog`:
+
+```sh
+bower i vaadin/vaadin-confirm-dialog --save
+```
+
+Once installed, import it in your application:
+
+```html
+<link rel="import" href="bower_components/vaadin-button/vaadin-button.html">
+```
+### Polymer 3 and ES Modules compatible version
+
+
+Install `vaadin-confirm-dialog`:
+
+```sh
+npm i @vaadin/vaadin-confirm-dialog --save
+```
+
+Once installed, import it in your application:
+
+```js
+import '@vaadin/vaadin-confirm-dialog/vaadin-confirm-dialog.js';
+```
+
 ## Getting Started
 
 Vaadin components use the Lumo theme by default.
 
 ## The file structure for Vaadin components
 
-- `src/component-name.html`
+- `src/vaadin-confirm-dialog.html`
 
   Unstyled component.
 
-- `theme/lumo/component-name.html`
+- `theme/lumo/vaadin-confirm-dialog.html`
 
   Component with Lumo theme.
 
-- `component-name.html`
+- `vaadin-confirm-dialog.html`
 
-  Alias for theme/lumo/component-name.html
+  Alias for theme/lumo/vaadin-confirm-dialog.html
 
 
 ## Running demos and tests in browser
