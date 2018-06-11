@@ -10,6 +10,9 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
 <link rel="import" href="../../vaadin-themable-mixin/vaadin-themable-mixin.html">
 <link rel="import" href="../../vaadin-element-mixin/vaadin-element-mixin.html">
 
+<link rel="import" href="../bower_components/vaadin-button/vaadin-button.html">
+<link rel="import" href="../bower_components/vaadin-dialog/vaadin-dialog.html">
+
 <dom-module id="vaadin-confirm-dialog">
   <template>
     <style>
@@ -20,8 +23,39 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
       :host([hidden]) {
         display: none !important;
       }
+
+      .title {
+        margin-top: var(--lumo-space-s);
+        margin-bottom: var(--lumo-space-m);
+      }
+
+      [part="label"] {
+        width: 25em;
+        min-width: 100%;
+        max-width: 100%;
+      }
+
+      .footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        margin: calc(var(--lumo-space-l) * -1);
+        margin-top: var(--lumo-space-l);
+        padding: 0 var(--lumo-space-l);
+        background-color: var(--lumo-contrast-5pct);
+      }
     </style>
-    <slot></slot>
+    <vaadin-dialog id="dialog" opened="{{opened}}" no-close-on-outside-click="{{noCloseOnOutsideClick}}" no-close-on-esc="{{noCloseOnEsc}}">
+      <template>
+        <h3 class="title" hidden$="[[!showTitle]]">[[title]]</h3>
+
+        <div part="message">[[message]]</div>
+
+        <div class="footer">
+          <vaadin-button theme="tertiary" on-click="_ok">[[okText]]</vaadin-button>
+        </div>
+      </template>
+    </vaadin-dialog>
   </template>
 
   <script>
@@ -47,7 +81,58 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
 
         static get properties() {
           return {
+            /**
+             * True if the overlay is currently displayed.
+             */
+             opened: {
+              type: Boolean,
+              value: false,
+              notify: true
+            },
+            /**
+             * Set to true to disable closing dialog on outside click
+             */
+            noCloseOnOutsideClick: {
+              type: Boolean,
+              value: false
+            },
+            /**
+             * Set to true to disable closing dialog on Escape press
+             */
+            noCloseOnEsc: {
+              type: Boolean,
+              value: false
+            },
+            title: {
+              type: String
+            },
+            message: {
+              type: String
+            },
+            showTitle: {
+              type: Boolean,
+              value: false
+            },
+            okText: {
+              type: String,
+              value: 'Ok'
+            }
           };
+        }
+
+        static get observers() {
+          return ['_openedChanged(opened)'];
+        }
+
+        _openedChanged(opened) {
+          if (!opened) {
+            return;
+          }
+          this.message = this.textContent || this.message;
+        }
+
+        _ok() {
+          this.opened = false;
         }
       }
 

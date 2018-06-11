@@ -7,10 +7,20 @@
     </style>
 
 
-    <h3>Sample example</h3>
+    <h3>Alert style dialog example</h3>
     <vaadin-demo-snippet id="element-basic-demos-sample-example">
       <template preserve-content>
-        <vaadin-confirm-dialog>Foobar</vaadin-confirm-dialog>
+        <vaadin-button>Show alert</vaadin-button>
+        <vaadin-confirm-dialog title="Alert" show-title>
+          The operation timed out. Please try again.
+        </vaadin-confirm-dialog>
+        <script>
+          window.addDemoReadyListener('#element-basic-demos-sample-example', function(document) {
+            document.querySelector('vaadin-button').addEventListener('click', function() {
+              document.querySelector('vaadin-confirm-dialog').opened = true;
+            });
+          });
+        </script>
       </template>
     </vaadin-demo-snippet>
 
