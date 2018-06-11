@@ -5,22 +5,6 @@ module.exports = {
   testTimeout: 180 * 1000,
   verbose: true,
 
-  plugins: {
-    istanbul: {
-      dir: './coverage',
-      reporters: ['text-summary', 'lcov'],
-      include: [
-        '**/vaadin-confirm-dialog/src/*.html'
-      ],
-      exclude: [],
-      thresholds: {
-        global: {
-          statements: 100
-        }
-      }
-    }
-  },
-
   registerHooks: function(context) {
     const saucelabsPlatformsMobile = [
       'macOS 10.12/iphone@10.3',

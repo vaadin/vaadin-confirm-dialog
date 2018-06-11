@@ -1,7 +1,6 @@
 ![Bower version](https://img.shields.io/bower/v/vaadin-confirm-dialog.svg)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/vaadin/vaadin-confirm-dialog)
 [![Build Status](https://travis-ci.org/vaadin/vaadin-confirm-dialog.svg?branch=master)](https://travis-ci.org/vaadin/vaadin-confirm-dialog)
-[![Coverage Status](https://coveralls.io/repos/github/vaadin/vaadin-confirm-dialog/badge.svg?branch=master)](https://coveralls.io/github/vaadin/vaadin-confirm-dialog?branch=master)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaadin/web-components?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # &lt;vaadin-confirm-dialog&gt;
