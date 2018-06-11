@@ -18,13 +18,12 @@
 
   <script>
     describe('sample test', function() {
-      var confirm, dialog, overlay, backdrop, content;
+      var confirm, dialog, overlay, content;
 
       beforeEach(function() {
         confirm = fixture('default');
         dialog = confirm.$.dialog;
         overlay = dialog.$.overlay;
-        backdrop = overlay.$.backdrop;
         content = overlay.$.content;
       });
 
