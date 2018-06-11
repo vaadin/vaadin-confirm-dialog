@@ -46,6 +46,12 @@
         var messageText = content.root.querySelector('div[part="message"]');
         expect(messageText).to.contain('New message');
       });
+
+      it('should be possible to set ok button text', function() {
+        confirm.okText = 'Of course';
+        var okButtonText = content.root.querySelector('#ok').textContent;
+        expect(okButtonText).to.be.equal('Of course');
+      });
     });
   </script>
 </body>
