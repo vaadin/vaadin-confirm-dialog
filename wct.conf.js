@@ -2,10 +2,7 @@ var envIndex = process.argv.indexOf('--env') + 1;
 var env = envIndex ? process.argv[envIndex] : undefined;
 
 module.exports = {
-  testTimeout: 180 * 1000,
-  verbose: true,
-
-  registerHooks: function(context) {
+  registerHooks: unction(context) {
     const saucelabsPlatformsMobile = [
       'macOS 10.12/iphone@10.3',
       'macOS 10.12/ipad@11.2',
