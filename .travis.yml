@@ -11,10 +11,6 @@ addons:
   firefox: latest
   chrome: stable
 
-install:
-  - npm install
-  - bower install
-
 before_script:
   - npm install -g bower polymer-cli@next
   - bower install
