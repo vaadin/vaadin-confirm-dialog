@@ -36,13 +36,13 @@
       });
 
       it('should apply the element content as a message', function() {
-        var messageText = content.root.querySelector('div[part="message"]');
+        var messageText = content.root.querySelector('div[part="message"]').textContent;
         expect(messageText).to.contain('Confirmation message');
       });
 
       it('should be possible to set message as property', function() {
         confirm.message = 'New message';
-        var messageText = content.root.querySelector('div[part="message"]');
+        var messageText = content.root.querySelector('div[part="message"]').textContent;
         expect(messageText).to.contain('New message');
       });
 
