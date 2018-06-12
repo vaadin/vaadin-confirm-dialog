@@ -36,8 +36,9 @@
       });
 
       it('should apply the element content as a message', function() {
-        var messageText = content.root.querySelector('div[part="message"]').textContent;
-        expect(messageText).to.contain('Confirmation message');
+        var children = Polymer.dom(content.root.querySelector('div[part="message"]')).getEffectiveChildNodes();
+        var messageNode = Array.from(children).find(n => n.data && n.data.includes('Confirmation message'));
+        expect(messageNode).to.be.not.null;
       });
 
       it('should be possible to set message as property', function() {
@@ -46,10 +47,13 @@
         expect(messageText).to.contain('New message');
       });
 
-      it('should be possible to set ok button text', function() {
-        confirm.okText = 'Of course';
-        var okButtonText = content.root.querySelector('#ok').textContent;
-        expect(okButtonText).to.be.equal('Of course');
+      it('should be possible to set confirm button text', function() {
+        var confirmButton = content.root.querySelector('#confirm');
+        expect(confirmButton.hidden).to.be.equal(true);
+        confirm.confirmText = 'Of course';
+        expect(confirmButton.hidden).to.be.equal(false);
+        var confirmButtonText = confirmButton.textContent;
+        expect(confirmButtonText).to.be.equal('Of course');
       });
     });
   </script>
