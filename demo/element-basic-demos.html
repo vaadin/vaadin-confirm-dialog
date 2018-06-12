@@ -11,11 +11,28 @@
     <vaadin-demo-snippet id="element-basic-demos-sample-example">
       <template preserve-content>
         <vaadin-button>Show alert</vaadin-button>
-        <vaadin-confirm-dialog title="Alert" show-title>
-          The operation timed out. Please try again.
+        <vaadin-confirm-dialog header="Alert" confirm-text="Ok" message="The operation timed out. Please try again later.">
         </vaadin-confirm-dialog>
         <script>
           window.addDemoReadyListener('#element-basic-demos-sample-example', function(document) {
+            document.querySelector('vaadin-button').addEventListener('click', function() {
+              document.querySelector('vaadin-confirm-dialog').opened = true;
+            });
+          });
+        </script>
+      </template>
+    </vaadin-demo-snippet>
+
+    <h3>Alert style DIY example</h3>
+    <vaadin-demo-snippet id="element-basic-diy-example">
+      <template preserve-content>
+        <vaadin-button>Show alert</vaadin-button>
+        <vaadin-confirm-dialog>
+          <h1 slot="header">H1</h1>
+          The operation timed out. Please try again later.
+        </vaadin-confirm-dialog>
+        <script>
+          window.addDemoReadyListener('#element-basic-diy-example', function(document) {
             document.querySelector('vaadin-button').addEventListener('click', function() {
               document.querySelector('vaadin-confirm-dialog').opened = true;
             });

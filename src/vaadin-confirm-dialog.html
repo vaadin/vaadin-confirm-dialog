@@ -24,18 +24,18 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
         display: none !important;
       }
 
-      .title {
+      [part="header"], .header {
         margin-top: var(--lumo-space-s);
         margin-bottom: var(--lumo-space-m);
       }
 
-      [part="label"] {
+      [part="message"] {
         width: 25em;
         min-width: 100%;
         max-width: 100%;
       }
 
-      .footer {
+      [part="footer"] {
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-end;
@@ -47,12 +47,18 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
     </style>
     <vaadin-dialog id="dialog" opened="{{opened}}" no-close-on-outside-click="{{noCloseOnOutsideClick}}" no-close-on-esc="{{noCloseOnEsc}}">
       <template>
-        <h3 class="title" hidden$="[[!showTitle]]">[[title]]</h3>
+        <div part="header">
+          <slot name="header">
+            <h3 class="header">[[header]]</h3>
+          </slot>
+        </div>
 
-        <div part="message">[[message]]</div>
+        <div part="message"><slot></slot>[[message]]</div>
 
-        <div class="footer">
-          <vaadin-button id="ok" theme="tertiary" on-click="_ok">[[okText]]</vaadin-button>
+        <div part="footer">
+          <slot name="confirm-button">
+            <vaadin-button id="confirm" theme="[[confirmTheme]]" on-click="_confirm" hidden$="[[!_showConfirmButton()]]">[[confirmText]]</vaadin-button>
+          </slot>
         </div>
       </template>
     </vaadin-dialog>
@@ -103,35 +109,44 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
               type: Boolean,
               value: false
             },
-            title: {
-              type: String
+            header: {
+              type: String,
+              reflectToAttribute: true
             },
             message: {
-              type: String
-            },
-            showTitle: {
-              type: Boolean,
-              value: false
-            },
-            okText: {
               type: String,
-              value: 'Ok'
+              reflectToAttribute: true
+            },
+            confirm: {
+              type: Boolean,
+              reflectToAttribute: true
+            },
+            confirmText: {
+              type: String,
+              value: 'Confirm',
+              reflectToAttribute: true
+            },
+            confirmTheme: {
+              type: String,
+              value: 'tertiary',
+              reflectToAttribute: true
             }
           };
         }
 
         static get observers() {
-          return ['_openedChanged(opened)'];
+          return [
+            '_showConfirmButton(confirm, confirmText, confirmTheme)'
+          ];
         }
 
-        _openedChanged(opened) {
-          if (!opened) {
-            return;
-          }
-          this.message = this.textContent || this.message;
+        _showConfirmButton() {
+          // TODO: reimplement
+          return this.confirm || this.confirmText !== 'Confirm' || this.confirmTheme !== 'tertiary';
         }
 
-        _ok() {
+        _confirm() {
+          this.dispatchEvent(new CustomEvent('confirm'));
           this.opened = false;
         }
       }
