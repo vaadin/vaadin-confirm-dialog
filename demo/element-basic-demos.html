@@ -27,9 +27,9 @@
     <vaadin-demo-snippet id="element-basic-diy-example">
       <template preserve-content>
         <vaadin-button>Show alert</vaadin-button>
-        <vaadin-confirm-dialog>
-          <h1 slot="header">H1</h1>
-          The operation timed out. Please try again later.
+        <vaadin-confirm-dialog confirm-text="Close">
+          <h4 slot="header">Time out</h4>
+          The operation timed out. <b>Please try again later.</b>
         </vaadin-confirm-dialog>
         <script>
           window.addDemoReadyListener('#element-basic-diy-example', function(document) {

@@ -17,11 +17,7 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
   <template>
     <style>
       :host {
-        display: inline-block;
-      }
-
-      :host([hidden]) {
-        display: none !important;
+        display: hidden;
       }
 
       [part="header"], .header {
@@ -44,6 +40,16 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
         padding: 0 var(--lumo-space-l);
         background-color: var(--lumo-contrast-5pct);
       }
+
+      [part="footer"] vaadin-button {
+        margin-top: var(--lumo-space-s);
+        margin-bottom: var(--lumo-space-s);
+      }
+
+      [part="footer"] vaadin-button[theme~="tertiary"] {
+        padding-left: var(--lumo-space-s);
+        padding-right: var(--lumo-space-s);
+      }
     </style>
     <vaadin-dialog id="dialog" opened="{{opened}}" no-close-on-outside-click="{{noCloseOnOutsideClick}}" no-close-on-esc="{{noCloseOnEsc}}">
       <template>
@@ -53,14 +59,18 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
           </slot>
         </div>
 
-        <div part="message"><slot></slot>[[message]]</div>
+        <div part="message">
+          <slot></slot>
+          [[message]]
+        </div>
 
         <div part="footer">
           <slot name="confirm-button">
-            <vaadin-button id="confirm" theme="[[confirmTheme]]" on-click="_confirm" hidden$="[[!_showConfirmButton()]]">[[confirmText]]</vaadin-button>
+            <vaadin-button id="confirm" theme="[[confirmTheme]]" on-click="_confirm" hidden$="[[!confirm]]">[[confirmText]]</vaadin-button>
           </slot>
         </div>
       </template>
+      <slot></slot>
     </vaadin-dialog>
   </template>
 
@@ -119,17 +129,21 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
             },
             confirm: {
               type: Boolean,
-              reflectToAttribute: true
+              reflectToAttribute: true,
+              value: false,
+              notify: true
             },
             confirmText: {
               type: String,
               value: 'Confirm',
-              reflectToAttribute: true
+              reflectToAttribute: true,
+              observer: '_confirmPropertyChanged'
             },
             confirmTheme: {
               type: String,
               value: 'tertiary',
-              reflectToAttribute: true
+              reflectToAttribute: true,
+              observer: '_confirmPropertyChanged'
             }
           };
         }
@@ -140,9 +154,16 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
           ];
         }
 
-        _showConfirmButton() {
-          // TODO: reimplement
-          return this.confirm || this.confirmText !== 'Confirm' || this.confirmTheme !== 'tertiary';
+        ready() {
+          super.ready();
+
+          Array.from(this.childNodes).forEach(c => this.$.dialog.$.overlay.$.content.appendChild(c));
+        }
+
+        _confirmPropertyChanged() {
+          if (this.confirmText !== 'Confirm' || this.confirmTheme !== 'tertiary') {
+            this.confirm = true;
+          }
         }
 
         _confirm() {
