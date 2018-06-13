@@ -37,7 +37,7 @@
 
       it('should apply the element content as a message', function() {
         var children = Polymer.dom(content.root.querySelector('div[part="message"]')).getEffectiveChildNodes();
-        var messageNode = Array.from(children).filter(n => n.data && n.data.includes('Confirmation message'));
+        var messageNode = Array.from(children).filter(n => n.data && n.data.indexOf('Confirmation message') !== -1);
         expect(messageNode.length).to.be.equal(1);
       });
 
