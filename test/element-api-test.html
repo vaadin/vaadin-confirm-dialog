@@ -37,8 +37,8 @@
 
       it('should apply the element content as a message', function() {
         var children = Polymer.dom(content.root.querySelector('div[part="message"]')).getEffectiveChildNodes();
-        var messageNode = Array.from(children).find(n => n.data && n.data.includes('Confirmation message'));
-        expect(messageNode).to.be.not.null;
+        var messageNode = Array.from(children).filter(n => n.data && n.data.includes('Confirmation message'));
+        expect(messageNode.length).to.be.equal(1);
       });
 
       it('should be possible to set message as property', function() {
