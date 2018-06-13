@@ -1,0 +1,36 @@
+<dom-module id="confirmation-demos">
+  <template>
+    <style include="vaadin-component-demo-shared-styles">
+      :host {
+        display: block;
+      }
+    </style>
+
+
+    <h3>Confirmation dialog example</h3>
+    <vaadin-demo-snippet id="confirmation-dialog-example">
+      <template preserve-content>
+        <vaadin-button>Show confirmation</vaadin-button>
+        <vaadin-confirm-dialog header="Please confirm" confirm-text="Delete" confirm-theme="error primary" cancel>
+          Are you sure you want to delete it?
+        </vaadin-confirm-dialog>
+        <script>
+          window.addDemoReadyListener('#confirmation-dialog-example', function(document) {
+            document.querySelector('vaadin-button').addEventListener('click', function() {
+              document.querySelector('vaadin-confirm-dialog').opened = true;
+            });
+          });
+        </script>
+      </template>
+    </vaadin-demo-snippet>
+
+  </template>
+  <script>
+    class ConfirmationDemos extends DemoReadyEventEmitter(ElementDemo(Polymer.Element)) {
+      static get is() {
+        return 'confirmation-demos';
+      }
+    }
+    customElements.define(ConfirmationDemos.is, ConfirmationDemos);
+  </script>
+</dom-module>

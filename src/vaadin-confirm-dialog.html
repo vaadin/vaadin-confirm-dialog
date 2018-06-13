@@ -34,6 +34,9 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
         </div>
 
         <div part="footer">
+          <slot name="cancel-button">
+            <vaadin-button id="cancel" theme$="[[cancelTheme]]" on-click="_cancel" hidden$="[[!cancel]]">[[cancelText]]</vaadin-button>
+          </slot>
           <slot name="confirm-button">
             <vaadin-button id="confirm" theme$="[[confirmTheme]]" on-click="_confirm" hidden$="[[!confirm]]">[[confirmText]]</vaadin-button>
           </slot>
@@ -132,6 +135,35 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
               value: 'tertiary',
               reflectToAttribute: true,
               observer: '_confirmPropertyChanged'
+            },
+            /**
+             * Whether to show cancel button or not.
+             */
+            cancel: {
+              type: Boolean,
+              reflectToAttribute: true,
+              value: false,
+              notify: true
+            },
+            /**
+             * Text displayed on cancel-button.
+             * Changing sets cancel property to true.
+             */
+            cancelText: {
+              type: String,
+              value: 'Cancel',
+              reflectToAttribute: true,
+              observer: '_cancelPropertyChanged'
+            },
+            /**
+             * Theme for a cancel-button.
+             * Changing sets cancel property to true.
+             */
+            cancelTheme: {
+              type: String,
+              value: 'tertiary',
+              reflectToAttribute: true,
+              observer: '_cancelPropertyChanged'
             }
           };
         }
@@ -150,6 +182,17 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
 
         _confirm() {
           this.dispatchEvent(new CustomEvent('confirm'));
+          this.opened = false;
+        }
+
+        _cancelPropertyChanged() {
+          if (this.confirmText !== 'Cancel' || this.confirmTheme !== 'tertiary') {
+            this.confirm = true;
+          }
+        }
+
+        _cancel() {
+          this.dispatchEvent(new CustomEvent('cancel'));
           this.opened = false;
         }
       }
