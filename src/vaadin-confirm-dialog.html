@@ -79,10 +79,12 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
     (function() {
 
       /**
-       * `<vaadin-confirm-dialog>` is a Web Component.
+       * `<vaadin-confirm-dialog>` is a Web Component for showing alerts and asking for user confirmation.
        *
        * ```
-       * <vaadin-confirm-dialog></vaadin-confirm-dialog>
+       * <vaadin-confirm-dialog on-confirm="_doConfirm">
+       *  Sample confirmation question
+       * </vaadin-confirm-dialog>
        * ```
        *
        * @memberof Vaadin
@@ -107,39 +109,56 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
               notify: true
             },
             /**
-             * Set to true to disable closing dialog on outside click
+             * Set to true to disable closing dialog on outside click.
              */
             noCloseOnOutsideClick: {
               type: Boolean,
               value: false
             },
             /**
-             * Set to true to disable closing dialog on Escape press
+             * Set to true to disable closing dialog on Escape press.
              */
             noCloseOnEsc: {
               type: Boolean,
               value: false
             },
+            /**
+             * Set the confirmation dialog title.
+             */
             header: {
               type: String,
               reflectToAttribute: true
             },
+            /**
+             * Set the message or confirmation question.
+             */
             message: {
               type: String,
               reflectToAttribute: true
             },
+            /**
+             * Whether to show confirm button or not.
+             */
             confirm: {
               type: Boolean,
               reflectToAttribute: true,
               value: false,
               notify: true
             },
+            /**
+             * Text displayed on confirm-button.
+             * Changing sets confirm property to true.
+             */
             confirmText: {
               type: String,
               value: 'Confirm',
               reflectToAttribute: true,
               observer: '_confirmPropertyChanged'
             },
+            /**
+             * Theme for a confirm-button.
+             * Changing sets confirm property to true.
+             */
             confirmTheme: {
               type: String,
               value: 'tertiary',

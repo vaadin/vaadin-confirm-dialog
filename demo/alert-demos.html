@@ -1,4 +1,4 @@
-<dom-module id="element-basic-demos">
+<dom-module id="alert-demos">
   <template>
     <style include="vaadin-component-demo-shared-styles">
       :host {
@@ -30,6 +30,7 @@
         <vaadin-confirm-dialog confirm-text="Close">
           <h4 slot="header">Time out</h4>
           The operation timed out. <b>Please try again later.</b>
+          <vaadin-button slot="confirm-button" theme="primary">Okay</vaadin-button>
         </vaadin-confirm-dialog>
         <script>
           window.addDemoReadyListener('#element-basic-diy-example', function(document) {
@@ -43,11 +44,11 @@
 
   </template>
   <script>
-    class ElementBasicDemos extends DemoReadyEventEmitter(ElementDemo(Polymer.Element)) {
+    class AlertDemos extends DemoReadyEventEmitter(ElementDemo(Polymer.Element)) {
       static get is() {
-        return 'element-basic-demos';
+        return 'alert-demos';
       }
     }
-    customElements.define(ElementBasicDemos.is, ElementBasicDemos);
+    customElements.define(AlertDemos.is, AlertDemos);
   </script>
 </dom-module>
