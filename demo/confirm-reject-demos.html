@@ -31,11 +31,11 @@
         <vaadin-confirm-dialog cancel>
           <h2 slot="header">Unsaved changes</h2>
           Save before exit?
-          <vaadin-button slot="reject-button" theme="error primary" on-click="_back">
+          <vaadin-button slot="reject-button" theme="error primary" on-click="_back" tabindex="2">
             <iron-icon icon="vaadin:eraser" slot="prefix"></iron-icon>
             Don't save
           </vaadin-button>
-          <vaadin-button slot="confirm-button" theme="primary" on-click="_send">
+          <vaadin-button slot="confirm-button" theme="primary" on-click="_send" tabindex="1">
             <iron-icon icon="vaadin:file-text" slot="prefix"></iron-icon>
             Save
           </vaadin-button>

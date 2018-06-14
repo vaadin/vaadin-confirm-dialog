@@ -29,8 +29,10 @@
         <vaadin-button theme="primary">Send</vaadin-button>
         <vaadin-confirm-dialog >
           <p>Are you sure you want to send the message with no title?</p>
-          <vaadin-button slot="cancel-button" theme="tertiary" on-click="_back">Don't send</vaadin-button>
-          <vaadin-button slot="confirm-button" theme="primary" on-click="_send">
+          <vaadin-button slot="cancel-button" theme="tertiary" on-click="_back" tabindex="1">
+            Don't send
+          </vaadin-button>
+          <vaadin-button slot="confirm-button" theme="primary" on-click="_send" tabindex="2">
             <iron-icon icon="vaadin:envelope-open" slot="prefix"></iron-icon>
             Send anyway
           </vaadin-button>
