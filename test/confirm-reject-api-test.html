@@ -12,12 +12,12 @@
 <body>
   <test-fixture id="default">
     <template>
-      <vaadin-confirm-dialog confirm cancel opened>Confirmation message</vaadin-confirm-dialog>
+      <vaadin-confirm-dialog confirm reject cancel opened>Confirmation message</vaadin-confirm-dialog>
     </template>
   </test-fixture>
 
   <script>
-    describe('2 way confirmation dialog test', function() {
+    describe('Confirm Reject dialog test', function() {
       var confirm, dialog, overlay, content;
 
       beforeEach(function() {
@@ -27,10 +27,10 @@
         content = overlay.$.content;
       });
 
-      it('should 2 buttons be visible by default', function() {
+      it('should all the buttons be visible by default', function() {
         var buttons = content.root.querySelectorAll('vaadin-button');
         Array.from(buttons).forEach(b => {
-          expect(b.hidden && (b.id == 'confirm' || b.id == 'cancel')).to.be.false;
+          expect(b.hidden).to.be.false;
         });
       });
     });
