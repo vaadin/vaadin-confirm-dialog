@@ -115,8 +115,7 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
              */
             confirmText: {
               type: String,
-              value: 'Confirm',
-              observer: '_confirmPropertyChanged'
+              value: 'Confirm'
             },
             /**
              * Theme for a confirm-button.
@@ -124,8 +123,7 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
              */
             confirmTheme: {
               type: String,
-              value: 'primary',
-              observer: '_confirmPropertyChanged'
+              value: 'primary'
             },
             /**
              * Whether to show cancel button or not.
@@ -142,8 +140,7 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
              */
             rejectText: {
               type: String,
-              value: 'Reject',
-              observer: '_rejectPropertyChanged'
+              value: 'Reject'
             },
             /**
              * Theme for a cancel-button.
@@ -151,8 +148,7 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
              */
             rejectTheme: {
               type: String,
-              value: 'error tertiary',
-              observer: '_rejectPropertyChanged'
+              value: 'error tertiary'
             },
             /**
              * Whether to show cancel button or not.
@@ -169,8 +165,7 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
              */
             cancelText: {
               type: String,
-              value: 'Cancel',
-              observer: '_cancelPropertyChanged'
+              value: 'Cancel'
             },
             /**
              * Theme for a cancel-button.
@@ -178,10 +173,17 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
              */
             cancelTheme: {
               type: String,
-              value: 'tertiary',
-              observer: '_cancelPropertyChanged'
+              value: 'tertiary'
             }
           };
+        }
+
+        static get observers() {
+          return [
+            '_confirmPropertyChanged(confirmText, confirmTheme)',
+            '_rejectPropertyChanged(rejectText, rejectTheme)',
+            '_cancelPropertyChanged(cancelText, cancelTheme)'
+          ];
         }
 
         ready() {
@@ -198,8 +200,8 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
           }
         }
 
-        _confirmPropertyChanged() {
-          if (this.confirmText !== 'Confirm' || this.confirmTheme !== 'primary') {
+        _confirmPropertyChanged(confirmText, confirmTheme) {
+          if (confirmText !== 'Confirm' || confirmTheme !== 'primary') {
             this.confirm = true;
           }
         }
@@ -213,8 +215,8 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
           this.opened = false;
         }
 
-        _cancelPropertyChanged() {
-          if (this.cancelText !== 'Cancel' || this.cancelTheme !== 'tertiary') {
+        _cancelPropertyChanged(cancelText, cancelTheme) {
+          if (cancelText !== 'Cancel' || cancelTheme !== 'tertiary') {
             this.cancel = true;
           }
         }
@@ -228,8 +230,8 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
           this.opened = false;
         }
 
-        _rejectPropertyChanged() {
-          if (this.rejectText !== 'Reject' || this.rejectTheme !== 'error tertiary') {
+        _rejectPropertyChanged(rejectText, rejectTheme) {
+          if (rejectText !== 'Reject' || rejectTheme !== 'error tertiary') {
             this.reject = true;
           }
         }
