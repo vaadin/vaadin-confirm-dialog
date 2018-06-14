@@ -53,7 +53,7 @@
         confirm.confirmText = 'Of course';
         expect(confirmButton.hidden).to.be.equal(false);
         var confirmButtonText = confirmButton.textContent;
-        expect(confirmButtonText).to.be.equal('Of course');
+        expect(confirmButtonText).to.contain('Of course');
       });
     });
   </script>

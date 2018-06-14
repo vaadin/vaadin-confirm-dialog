@@ -20,7 +20,7 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
         display: hidden;
       }
     </style>
-    <vaadin-dialog id="dialog" opened="{{opened}}" no-close-on-outside-click="{{noCloseOnOutsideClick}}" no-close-on-esc="{{noCloseOnEsc}}">
+    <vaadin-dialog id="dialog" opened="{{opened}}" no-close-on-outside-click>
       <template>
         <div part="header">
           <slot name="header">
@@ -87,20 +87,6 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
               type: Boolean,
               value: false,
               notify: true
-            },
-            /**
-             * Set to true to disable closing dialog on outside click.
-             */
-            noCloseOnOutsideClick: {
-              type: Boolean,
-              value: false
-            },
-            /**
-             * Set to true to disable closing dialog on Escape press.
-             */
-            noCloseOnEsc: {
-              type: Boolean,
-              value: false
             },
             /**
              * Set the confirmation dialog title.
@@ -200,7 +186,7 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
 
         ready() {
           super.ready();
-
+          this.$.dialog.$.overlay.addEventListener('vaadin-overlay-escape-press', this._cancel.bind(this));
           Array.from(this.childNodes).forEach(c => this.$.dialog.$.overlay.$.content.appendChild(c));
         }
 
@@ -210,6 +196,10 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
           }
         }
 
+        /**
+         * @event confirm
+         * fired when Confirm button was pressed.
+         */
         _confirm() {
           this.dispatchEvent(new CustomEvent('confirm'));
           this.opened = false;
@@ -221,6 +211,10 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
           }
         }
 
+        /**
+         * @event cancel
+         * fired when Cancel button or Escape key was pressed.
+         */
         _cancel() {
           this.dispatchEvent(new CustomEvent('cancel'));
           this.opened = false;
@@ -232,6 +226,10 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
           }
         }
 
+        /**
+         * @event reject
+         * fired when Reject button was pressed.
+         */
         _reject() {
           this.dispatchEvent(new CustomEvent('reject'));
           this.opened = false;
