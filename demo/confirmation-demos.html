@@ -6,16 +6,55 @@
       }
     </style>
 
-
     <h3>Confirmation dialog example</h3>
     <vaadin-demo-snippet id="confirmation-dialog-example">
       <template preserve-content>
-        <vaadin-button>Show confirmation</vaadin-button>
-        <vaadin-confirm-dialog header="Please confirm" confirm-text="Delete" confirm-theme="error primary" cancel>
-          Are you sure you want to delete it?
+        <vaadin-button>Publish</vaadin-button>
+        <vaadin-confirm-dialog header="Publishing" confirm-text="Publish" cancel>
+          Are you sure you want to publish the article?
         </vaadin-confirm-dialog>
         <script>
           window.addDemoReadyListener('#confirmation-dialog-example', function(document) {
+            document.querySelector('vaadin-button').addEventListener('click', function() {
+              document.querySelector('vaadin-confirm-dialog').opened = true;
+            });
+          });
+        </script>
+      </template>
+    </vaadin-demo-snippet>
+
+    <h3>DIY Confirmation dialog example</h3>
+    <vaadin-demo-snippet id="diy-confirmation-dialog-example">
+      <template preserve-content>
+        <vaadin-button theme="primary">Send</vaadin-button>
+        <vaadin-confirm-dialog >
+          <p>Are you sure you want to send the message with no title?</p>
+          <vaadin-button slot="cancel-button" theme="tertiary" on-click="_back">Don't send</vaadin-button>
+          <vaadin-button slot="confirm-button" theme="primary" on-click="_send">
+            <iron-icon icon="vaadin:edit" slot="prefix"></iron-icon>
+            Send anyway
+          </vaadin-button>
+        </vaadin-confirm-dialog>
+        <script>
+          window.addDemoReadyListener('#diy-confirmation-dialog-example', function(document) {
+            document.querySelector('vaadin-button').addEventListener('click', function() {
+              document.querySelector('vaadin-confirm-dialog').opened = true;
+            });
+          });
+        </script>
+      </template>
+    </vaadin-demo-snippet>
+
+    <h3>Delete Confirmation dialog example</h3>
+    <vaadin-demo-snippet id="delete-confirmation-dialog-example">
+      <template preserve-content>
+        <vaadin-button theme="error">Delete product</vaadin-button>
+        <vaadin-confirm-dialog header="Delete product" confirm-text="Delete" confirm-theme="error primary" cancel>
+          <p>Delete <b>Strawberry Bun</b>? The product will be removed and any orders containing it will be modified to indicate that the product is no longer available.</p>
+          <p>This operation can not be undone.</p>
+        </vaadin-confirm-dialog>
+        <script>
+          window.addDemoReadyListener('#delete-confirmation-dialog-example', function(document) {
             document.querySelector('vaadin-button').addEventListener('click', function() {
               document.querySelector('vaadin-confirm-dialog').opened = true;
             });

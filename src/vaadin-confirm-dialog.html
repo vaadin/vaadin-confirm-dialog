@@ -132,7 +132,7 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
              */
             confirmTheme: {
               type: String,
-              value: 'tertiary',
+              value: 'primary',
               reflectToAttribute: true,
               observer: '_confirmPropertyChanged'
             },
@@ -175,7 +175,7 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
         }
 
         _confirmPropertyChanged() {
-          if (this.confirmText !== 'Confirm' || this.confirmTheme !== 'tertiary') {
+          if (this.confirmText !== 'Confirm' || this.confirmTheme !== 'primary') {
             this.confirm = true;
           }
         }
