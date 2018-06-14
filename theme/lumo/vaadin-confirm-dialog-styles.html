@@ -50,6 +50,10 @@
         margin-right: calc(var(--lumo-space-s) * -1);
       }
 
+      [part="footer"] slot + slot vaadin-button,
+      [part="footer"] slot + slot::slotted(vaadin-button) {
+        margin-left: var(--lumo-space-s);
+      }
     </style>
   </template>
 </dom-module>
