@@ -28,11 +28,9 @@
       });
 
       it('should bypass properties to dialog', function() {
-        expect(dialog.opened).to.be.equal(true);
-        confirm.noCloseOnEsc = true;
-        expect(dialog.noCloseOnEsc).to.be.equal(true);
-        confirm.noCloseOnOutsideClick = true;
-        expect(dialog.noCloseOnOutsideClick).to.be.equal(true);
+        expect(dialog.opened).to.be.true;
+        confirm.opened = false;
+        expect(dialog.opened).to.be.false;
       });
 
       it('should apply the element content as a message', function() {
