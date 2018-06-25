@@ -13,6 +13,12 @@
           <template>
             <vaadin-button theme="primary">Close</vaadin-button>
             <vaadin-confirm-dialog cancel on-cancel="cancel">
+              <style>
+                vaadin-button {
+                  margin-top: 0;
+                  margin-bottom: 0;
+                }
+              </style>
               <h3 slot="header">Unsaved changes</h3>
               <p>Do you want to <b>save</b> or <b>discard</b> your changes before navigating away?</p>
               <vaadin-button slot="reject-button" theme="error tertiary" on-click="discard" tabindex="2">
