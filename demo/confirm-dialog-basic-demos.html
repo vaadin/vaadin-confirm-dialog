@@ -11,7 +11,7 @@
       <template preserve-content>
         <dom-bind id="alert-example">
           <template>
-            <vaadin-button on-click="open">Show alert</vaadin-button>
+            <vaadin-button on-click="open">Open dialog</vaadin-button>
             <vaadin-confirm-dialog header="Meeting starting" confirm-text="OK" on-confirm="dismiss">
               Your next meeting starts in 5 minutes
             </vaadin-confirm-dialog>
@@ -38,7 +38,7 @@
       <template preserve-content>
         <dom-bind id="confirm-cancel-example">
           <template>
-            <vaadin-button id="openDialog" theme="error">Delete item...</vaadin-button>
+            <vaadin-button id="openDialog">Open dialog</vaadin-button>
             <vaadin-confirm-dialog header="Confirm delete" confirm-text="Delete" confirm-theme="error primary" 
               on-confirm="delete" cancel on-cancel="cancel">
               Are you sure you want to delete the item?
@@ -69,7 +69,7 @@
       <template preserve-content>
         <dom-bind id="publish-example">
           <template>
-            <vaadin-button id="openDialog">Publish...</vaadin-button>
+            <vaadin-button id="openDialog">Open dialog</vaadin-button>
             <vaadin-confirm-dialog header="Publish" confirm-text="Publish" cancel message="Are you sure you want to publish the article?"
               on-confirm="publish" on-cancel="cancel">
             </vaadin-confirm-dialog>
@@ -99,7 +99,7 @@
       <template preserve-content>
         <dom-bind id="unsaved-changes-example">
           <template>
-            <vaadin-button>Close</vaadin-button>
+            <vaadin-button>Open dialog</vaadin-button>
             <vaadin-confirm-dialog header="Unsaved changes" confirm-text="Save" cancel reject reject-text="Discard"
               on-confirm="save" on-reject="discard" on-cancel="cancel">
               Do you want to save or discard your changes before navigating away?
