@@ -12,8 +12,8 @@
 [&lt;vaadin-confirm-dialog&gt;](https://vaadin.com/components/vaadin-confirm-dialog) is a Web Component providing an easy way to ask the user to confirm a choice, part of the [Vaadin components](https://vaadin.com/components).
 
 ```html
-  <vaadin-confirm-dialog header="Unsaved changes" confirm-text="Save" cancel reject reject-text="Discard"
-    on-confirm="save" on-reject="discard" on-cancel="cancel">
+  <vaadin-confirm-dialog header="Unsaved changes" confirm-text="Save" on-confirm="save"
+    cancel on-cancel="cancel" reject reject-text="Discard" on-reject="discard">
     Do you want to save or discard your changes before navigating away?
   </vaadin-confirm-dialog>
 ```
