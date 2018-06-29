@@ -12,7 +12,7 @@
         <dom-bind id="custom-example">
           <template>
             <vaadin-button>Open dialog</vaadin-button>
-            <vaadin-confirm-dialog cancel on-cancel="cancel">
+            <vaadin-confirm-dialog cancel>
               <style>
                 vaadin-button {
                   margin-top: 0;
@@ -26,7 +26,7 @@
                 <iron-icon icon="vaadin:trash" slot="prefix"></iron-icon>
                 Discard
               </vaadin-button>
-              <vaadin-button slot="confirm-button" theme="primary" on-click="save" tabindex="1">
+              <vaadin-button slot="confirm-button" theme="primary" tabindex="1">
                 <iron-icon icon="vaadin:envelope-open" slot="prefix"></iron-icon>
                 Save
               </vaadin-button>
@@ -41,17 +41,18 @@
               example.$.status.innerText = '';
               document.querySelector('vaadin-confirm-dialog').opened = true;
             });
-            example.save = function() {
+            var confirm = document.querySelector('vaadin-confirm-dialog');
+            confirm.querySelector('vaadin-button[slot="confirm-button"]').addEventListener('click', function() {
               document.querySelector('vaadin-confirm-dialog').opened = false;
               example.$.status.innerText = 'Your changes were saved';
-            };
-            example.discard = function() {
+            });
+            confirm.querySelector('vaadin-button[slot="reject-button"]').addEventListener('click', function() {
               document.querySelector('vaadin-confirm-dialog').opened = false;
               example.$.status.innerText = 'Your changes were discarded';
-            };
-            example.cancel = function() {
+            });
+            confirm.addEventListener('cancel', function() {
               example.$.status.innerText = 'Cancel was clicked';
-            };
+            });
           });
         </script>
       </template>
