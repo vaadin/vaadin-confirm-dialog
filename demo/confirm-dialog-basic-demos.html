@@ -9,24 +9,20 @@
     <h3>Alert Dialog</h3>
     <vaadin-demo-snippet id="confirm-dialog-basic-demos-alert-dialog">
       <template preserve-content>
-        <dom-bind id="alert-example">
-          <template>
-            <vaadin-button>Open dialog</vaadin-button>
-            <vaadin-confirm-dialog header="Meeting starting" confirm-text="OK">
-              Your next meeting starts in 5 minutes
-            </vaadin-confirm-dialog>
-            <span id="status"></span>
-          </template>
-        </dom-bind>
+        <vaadin-button>Open dialog</vaadin-button>
+        <vaadin-confirm-dialog header="Meeting starting" confirm-text="OK">
+          Your next meeting starts in 5 minutes
+        </vaadin-confirm-dialog>
+        <span id="status"></span>
         <script>
           window.addDemoReadyListener('#confirm-dialog-basic-demos-alert-dialog', function(document) {
-            var example = document.querySelector('#alert-example');
+            var status = document.querySelector('#status');
             document.querySelector('vaadin-button').addEventListener('click', function() {
-              example.$.status.innerText = '';
+              status.innerText = '';
               document.querySelector('vaadin-confirm-dialog').opened = true;
             });
             document.querySelector('vaadin-confirm-dialog').addEventListener('confirm', function() {
-              example.$.status.innerText = 'OK clicked';
+              status.innerText = 'OK clicked';
             });
           });
         </script>
@@ -36,28 +32,24 @@
     <h3>Confirm or Cancel Dialog</h3>
     <vaadin-demo-snippet id="confirm-dialog-basic-demos-confirm-cancel">
       <template preserve-content>
-        <dom-bind id="confirm-cancel-example">
-          <template>
-            <vaadin-button>Open dialog</vaadin-button>
-            <vaadin-confirm-dialog header="Confirm delete" confirm-text="Delete" confirm-theme="error primary" cancel>
-              Are you sure you want to delete the item?
-            </vaadin-confirm-dialog>
-            <span id="status"></span>
-          </template>
-        </dom-bind>
+        <vaadin-button>Open dialog</vaadin-button>
+        <vaadin-confirm-dialog header="Confirm delete" confirm-text="Delete" confirm-theme="error primary" cancel>
+          Are you sure you want to delete the item?
+        </vaadin-confirm-dialog>
+        <span id="status"></span>
         <script>
           window.addDemoReadyListener('#confirm-dialog-basic-demos-confirm-cancel', function(document) {
-            var example = document.querySelector('#confirm-cancel-example');
+            var status = document.querySelector('#status');
             var confirm = document.querySelector('vaadin-confirm-dialog');
             document.querySelector('vaadin-button').addEventListener('click', function() {
-              example.$.status.innerText = '';
+              status.innerText = '';
               confirm.opened = true;
             });
             confirm.addEventListener('confirm', function() {
-              example.$.status.innerText = 'Something was deleted';
+              status.innerText = 'Something was deleted';
             });
             confirm.addEventListener('cancel', function() {
-              example.$.status.innerText = 'Nothing was deleted';
+              status.innerText = 'Nothing was deleted';
             });
           });
         </script>
@@ -67,28 +59,24 @@
     <h3>Confirmation Dialog</h3>
     <vaadin-demo-snippet id="confirm-dialog-basic-demos-confirmation-dialog">
       <template preserve-content>
-        <dom-bind id="publish-example">
-          <template>
-            <vaadin-button>Open dialog</vaadin-button>
-            <vaadin-confirm-dialog header="Publish" confirm-text="Publish" cancel 
-              message="Are you sure you want to publish the article?">
-            </vaadin-confirm-dialog>
-            <span id="status"></span>
-          </template>
-        </dom-bind>
+        <vaadin-button>Open dialog</vaadin-button>
+        <vaadin-confirm-dialog header="Publish" confirm-text="Publish" cancel 
+          message="Are you sure you want to publish the article?">
+        </vaadin-confirm-dialog>
+        <span id="status"></span>
         <script>
           window.addDemoReadyListener('#confirm-dialog-basic-demos-confirmation-dialog', function(document) {
-            var example = document.querySelector('#publish-example');
+            var status = document.querySelector('#status');
             var confirm = document.querySelector('vaadin-confirm-dialog');
             document.querySelector('vaadin-button').addEventListener('click', function() {
-              example.$.status.innerText = '';
+              status.innerText = '';
               confirm.opened = true;
             });
             confirm.addEventListener('confirm', function() {
-              example.$.status.innerText = 'Something was successfully published';
+              status.innerText = 'Something was successfully published';
             });
             confirm.addEventListener('cancel', function() {
-              example.$.status.innerText = 'Publishing was canceled';
+              status.innerText = 'Publishing was canceled';
             });
           });
         </script>
@@ -98,31 +86,27 @@
     <h3>Confirm‚ Reject or Cancel Dialog</h3>
     <vaadin-demo-snippet id="confirm-dialog-basic-demos-confirm-discard">
       <template preserve-content>
-        <dom-bind id="unsaved-changes-example">
-          <template>
-            <vaadin-button>Open dialog</vaadin-button>
-            <vaadin-confirm-dialog header="Unsaved changes" confirm-text="Save" cancel reject reject-text="Discard">
-              Do you want to save or discard your changes before navigating away?
-            </vaadin-confirm-dialog>
-            <span id="status"></span>
-          </template>
-        </dom-bind>
+        <vaadin-button>Open dialog</vaadin-button>
+        <vaadin-confirm-dialog header="Unsaved changes" confirm-text="Save" cancel reject reject-text="Discard">
+          Do you want to save or discard your changes before navigating away?
+        </vaadin-confirm-dialog>
+        <span id="status"></span>
         <script>
           window.addDemoReadyListener('#confirm-dialog-basic-demos-confirm-discard', function(document) {
-            var example = document.querySelector('#unsaved-changes-example');
+            var status = document.querySelector('#status');
             var confirm = document.querySelector('vaadin-confirm-dialog');
             document.querySelector('vaadin-button').addEventListener('click', function() {
-              example.$.status.innerText = '';
+              status.innerText = '';
               confirm.opened = true;
             });
             confirm.addEventListener('confirm', function() {
-              example.$.status.innerText = 'Your changes were saved';
+              status.innerText = 'Your changes were saved';
             });
             confirm.addEventListener('reject', function() {
-              example.$.status.innerText = 'Your changes were discarded';
+              status.innerText = 'Your changes were discarded';
             });
             confirm.addEventListener('cancel', function() {
-              example.$.status.innerText = 'Cancel was clicked';
+              status.innerText = 'Cancel was clicked';
             });
           });
         </script>
