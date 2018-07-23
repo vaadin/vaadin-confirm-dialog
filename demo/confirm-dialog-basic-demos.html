@@ -17,11 +17,12 @@
         <script>
           window.addDemoReadyListener('#confirm-dialog-basic-demos-alert-dialog', function(document) {
             var status = document.querySelector('#status');
+            var dialog = document.querySelector('vaadin-confirm-dialog');
             document.querySelector('vaadin-button').addEventListener('click', function() {
               status.innerText = '';
-              document.querySelector('vaadin-confirm-dialog').opened = true;
+              dialog.opened = true;
             });
-            document.querySelector('vaadin-confirm-dialog').addEventListener('confirm', function() {
+            dialog.addEventListener('confirm', function() {
               status.innerText = 'OK clicked';
             });
           });
@@ -40,15 +41,15 @@
         <script>
           window.addDemoReadyListener('#confirm-dialog-basic-demos-confirm-cancel', function(document) {
             var status = document.querySelector('#status');
-            var confirm = document.querySelector('vaadin-confirm-dialog');
+            var dialog = document.querySelector('vaadin-confirm-dialog');
             document.querySelector('vaadin-button').addEventListener('click', function() {
               status.innerText = '';
-              confirm.opened = true;
+              dialog.opened = true;
             });
-            confirm.addEventListener('confirm', function() {
+            dialog.addEventListener('confirm', function() {
               status.innerText = 'Something was deleted';
             });
-            confirm.addEventListener('cancel', function() {
+            dialog.addEventListener('cancel', function() {
               status.innerText = 'Nothing was deleted';
             });
           });
@@ -67,15 +68,15 @@
         <script>
           window.addDemoReadyListener('#confirm-dialog-basic-demos-confirmation-dialog', function(document) {
             var status = document.querySelector('#status');
-            var confirm = document.querySelector('vaadin-confirm-dialog');
+            var dialog = document.querySelector('vaadin-confirm-dialog');
             document.querySelector('vaadin-button').addEventListener('click', function() {
               status.innerText = '';
-              confirm.opened = true;
+              dialog.opened = true;
             });
-            confirm.addEventListener('confirm', function() {
+            dialog.addEventListener('confirm', function() {
               status.innerText = 'Something was successfully published';
             });
-            confirm.addEventListener('cancel', function() {
+            dialog.addEventListener('cancel', function() {
               status.innerText = 'Publishing was canceled';
             });
           });
@@ -94,18 +95,18 @@
         <script>
           window.addDemoReadyListener('#confirm-dialog-basic-demos-confirm-discard', function(document) {
             var status = document.querySelector('#status');
-            var confirm = document.querySelector('vaadin-confirm-dialog');
+            var dialog = document.querySelector('vaadin-confirm-dialog');
             document.querySelector('vaadin-button').addEventListener('click', function() {
               status.innerText = '';
-              confirm.opened = true;
+              dialog.opened = true;
             });
-            confirm.addEventListener('confirm', function() {
+            dialog.addEventListener('confirm', function() {
               status.innerText = 'Your changes were saved';
             });
-            confirm.addEventListener('reject', function() {
+            dialog.addEventListener('reject', function() {
               status.innerText = 'Your changes were discarded';
             });
-            confirm.addEventListener('cancel', function() {
+            dialog.addEventListener('cancel', function() {
               status.innerText = 'Cancel was clicked';
             });
           });

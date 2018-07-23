@@ -35,20 +35,20 @@
             var status = document.querySelector('#status');
             var save = document.querySelector('#save');
             var discard = document.querySelector('#discard');
-            var confirm = document.querySelector('vaadin-confirm-dialog');
+            var dialog = document.querySelector('vaadin-confirm-dialog');
             document.querySelector('vaadin-button').addEventListener('click', function() {
               status.innerText = '';
-              confirm.opened = true;
+              dialog.opened = true;
             });
             save.addEventListener('click', function() {
-              confirm.opened = false;
+              dialog.opened = false;
               status.innerText = 'Your changes were saved';
             });
             discard.addEventListener('click', function() {
-              confirm.opened = false;
+              dialog.opened = false;
               status.innerText = 'Your changes were discarded';
             });
-            confirm.addEventListener('cancel', function() {
+            dialog.addEventListener('cancel', function() {
               status.innerText = 'Cancel was clicked';
             });
           });
