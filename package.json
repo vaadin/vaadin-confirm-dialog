@@ -16,6 +16,11 @@
   "bugs": {
     "url": "https://github.com/vaadin/vaadin-confirm-dialog/issues"
   },
+  "resolutions": {
+    "@vaadin/vaadin-element-mixin": "2.1.1",
+    "@vaadin/vaadin-usage-statistics": "2.0.1",
+    "@vaadin/vaadin-development-mode-detector": "2.0.0"
+  },
   "homepage": "https://vaadin.com/components",
   "scripts": {
     "test": "wct",
