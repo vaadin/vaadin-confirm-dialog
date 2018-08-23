@@ -258,10 +258,15 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
 
       customElements.define(ConfirmDialogElement.is, ConfirmDialogElement);
 
+      /**
+       * @namespace Vaadin
+       */
+      window.Vaadin.ConfirmDialogElement = ConfirmDialogElement;
+
       const licenseChecker = window.Vaadin.developmentModeCallback
-        && window.Vaadin.developmentModeCallback["vaadin-license-checker"];
+        && window.Vaadin.developmentModeCallback['vaadin-license-checker'];
       if (typeof licenseChecker === 'function') {
-         licenseChecker(ConfirmDialogElement);
+        licenseChecker(ConfirmDialogElement);
       }
     })();
   </script>
