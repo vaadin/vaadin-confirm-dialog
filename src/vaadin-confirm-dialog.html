@@ -33,7 +33,7 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
           </slot>
         </div>
 
-        <div part="message">
+        <div part="message" id="message">
           <slot></slot>
           [[message]]
         </div>
@@ -41,21 +41,21 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
         <div part="footer">
           <div class="cancel-button">
             <slot name="cancel-button">
-              <vaadin-button id="cancel" theme$="[[cancelTheme]]" on-click="_cancel" hidden$="[[!cancel]]">
+              <vaadin-button id="cancel" theme$="[[cancelTheme]]" on-click="_cancel" hidden$="[[!cancel]]" aria-describedby="message">
                 [[cancelText]]
               </vaadin-button>
             </slot>
           </div>
           <div class="reject-button">
             <slot name="reject-button">
-              <vaadin-button id="reject" theme$="[[rejectTheme]]" on-click="_reject" hidden$="[[!reject]]">
+              <vaadin-button id="reject" theme$="[[rejectTheme]]" on-click="_reject" hidden$="[[!reject]]" aria-describedby="message">
                 [[rejectText]]
               </vaadin-button>
             </slot>
           </div>
           <div class="confirm-button">
             <slot name="confirm-button">
-              <vaadin-button id="confirm" theme$="[[confirmTheme]]" on-click="_confirm">
+              <vaadin-button id="confirm" theme$="[[confirmTheme]]" on-click="_confirm" aria-describedby="message">
                 [[confirmText]]
               </vaadin-button>
             </slot>
