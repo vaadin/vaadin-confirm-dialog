@@ -1,0 +1,66 @@
+<dom-module id="material-confirm-dialog" theme-for="vaadin-confirm-dialog">
+  <template>
+    <style>
+      [part="message"] {
+        width: 25em;
+        max-width: 100%;
+      }
+
+      [part="footer"] {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        margin-top: 1.5em;
+      }
+
+      .cancel-button {
+        flex-grow: 1;
+        margin-left: calc(var(--vaadin-confirm-dialog-space) * -1);
+      }
+
+      .confirm-button {
+        margin-right: calc(var(--vaadin-confirm-dialog-space) * -1);
+      }
+
+      .reject-button,
+      .confirm-button {
+        margin-left: var(--vaadin-confirm-dialog-space);
+      }
+
+      @media (max-width: 360px) {
+        [part="footer"] {
+          flex-direction: column-reverse;
+        }
+
+        [part="footer"] div {
+          margin: 0;
+          width: 100%;
+        }
+
+        [part="footer"] vaadin-button,
+        [part="footer"] ::slotted(*) {
+          width: 100%;
+          margin-bottom: calc(var(--vaadin-confirm-dialog-space) / 2);
+        }
+      }
+    </style>
+  </template>
+</dom-module>
+
+<dom-module id="material-confirm-dialog-overlay" theme-for="vaadin-dialog-overlay">
+    <template>
+      <style include="material-vaadin-overlay">
+        :host {
+          --vaadin-confirm-dialog-space: 0.5em;
+        }
+        [part="overlay"] {
+          max-width: 100%;
+          min-width: 0;
+        }
+        [part="content"] {
+          padding: 12px 24px;
+          min-width: 0;
+        }
+      </style>
+  </template>
+</dom-module>
