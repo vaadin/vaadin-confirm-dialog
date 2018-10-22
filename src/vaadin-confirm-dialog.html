@@ -62,7 +62,6 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
           </div>
         </div>
       </template>
-      <slot></slot>
     </vaadin-dialog>
   </template>
 
@@ -200,6 +199,9 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
             cancelTheme: {
               type: String,
               value: 'tertiary'
+            },
+            _confirmButton: {
+              type: Element
             }
           };
         }
@@ -213,7 +215,21 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
           if (!this.opened) {
             return;
           }
-          Array.from(this.childNodes).forEach(c => this.$.dialog.$.overlay.$.content.appendChild(c));
+
+          Array.from(this.childNodes).forEach(c => {
+            var newChild = this.$.dialog.$.overlay.$.content.appendChild(c);
+            if (newChild.getAttribute && newChild.getAttribute('slot') == 'confirm-button' && newChild.focus) {
+              this._confirmButton = newChild;
+            }
+          });
+
+          Polymer.RenderStatus.beforeNextRender(this, () => {
+            if (this._confirmButton) {
+              this._confirmButton.focus();
+            } else {
+              this.$.dialog.$.overlay.content.querySelector('#confirm').focus();
+            }
+          });
         }
 
         _escPressed(event) {
