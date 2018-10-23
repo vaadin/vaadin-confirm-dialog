@@ -11,38 +11,29 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-end;
-        margin-top: 28px;
-        margin-right: -8px;
+        margin-top: 24px;
+        margin-right: -16px;
       }
 
-      .cancel-button {
-        flex-grow: 1;
-        margin-left: -8px;
+      [part="footer"] div:nth-child(-n + 2) vaadin-button,
+      [part="footer"] div:nth-child(-n + 2) ::slotted(*) {
+        margin-right: 8px;
       }
-
-      .confirm-button {
-        margin-right: -8px;
-      }
-
-      .reject-button,
-      .confirm-button {
-        margin-left: 8px;
-      }
-
+      
       @media (max-width: 360px) {
         [part="footer"] {
           flex-direction: column-reverse;
           align-items: flex-end;
-          margin-right: -16px;
         }
 
-        [part="footer"] div {
-          margin: 0;
+        [part="footer"] div:nth-child(-n + 2) vaadin-button,
+        [part="footer"] div:nth-child(-n + 2) ::slotted(*) {
+          margin-top: 8px;
+          margin-right: 0;
         }
 
-        [part="footer"] vaadin-button,
-        [part="footer"] ::slotted(*) {
-          width: 100%;
+        [part="footer"] div:nth-last-child(1) vaadin-button,
+        [part="footer"] div:nth-last-child(1) ::slotted(*) {
           margin-top: 8px;
         }
       }
