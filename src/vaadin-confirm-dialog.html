@@ -237,14 +237,8 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
         }
 
         _escPressed(event) {
-          if (event.defaultPrevented) {
-            return;
-          }
-
-          if (this.cancel) {
+          if (!event.defaultPrevented) {
             this._cancel();
-          } else {
-            this.opened = false;
           }
         }
 
