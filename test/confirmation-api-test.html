@@ -28,7 +28,7 @@
       });
 
       it('should 2 buttons be visible by default', function() {
-        var buttons = content.root.querySelectorAll('vaadin-button');
+        var buttons = content.shadowRoot.querySelectorAll('vaadin-button');
         Array.from(buttons).forEach(b => {
           expect(b.hidden && (b.id == 'confirm' || b.id == 'cancel')).to.be.false;
         });

@@ -28,10 +28,8 @@
       });
 
       it('should all the buttons be visible by default', function() {
-        var buttons = content.root.querySelectorAll('vaadin-button');
-        Array.from(buttons).forEach(b => {
-          expect(b.hidden).to.be.false;
-        });
+        var buttons = content.shadowRoot.querySelectorAll('vaadin-button');
+        Array.from(buttons).forEach(b => expect(b.hidden).to.be.false);
       });
     });
   </script>
