@@ -33,14 +33,14 @@
     "vaadin-material-styles": "vaadin/vaadin-material-styles#^1.1.0",
     "vaadin-license-checker": "vaadin/license-checker#^2.1.0",
     "vaadin-dialog": "vaadin/vaadin-dialog#^2.1.0",
-    "vaadin-button": "vaadin/vaadin-button#^2.1.0"
+    "vaadin-button": "vaadin/vaadin-button#^2.1.0",
+    "vaadin-overlay": "vaadin/vaadin-overlay#^3.2.0"
   },
   "devDependencies": {
     "iron-component-page": "^3.0.0",
     "iron-demo-helpers": "^2.0.0",
     "webcomponentsjs": "^1.0.0",
     "web-component-tester": "^6.1.5",
-    "test-fixture": "^3.0.0",
     "vaadin-demo-helpers": "vaadin/vaadin-demo-helpers#^2.0.1",
     "vaadin-icons": "vaadin/vaadin-icons#^4.2.0"
   }
