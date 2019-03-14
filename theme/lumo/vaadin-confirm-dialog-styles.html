@@ -2,6 +2,7 @@
 <link rel="import" href="../../../vaadin-lumo-styles/spacing.html">
 <link rel="import" href="../../../vaadin-dialog/theme/lumo/vaadin-dialog.html">
 <link rel="import" href="../../../vaadin-button/theme/lumo/vaadin-button.html">
+<link rel="import" href="../../../vaadin-checkbox/theme/lumo/vaadin-checkbox.html">
 
 <dom-module id="lumo-confirm-dialog" theme-for="vaadin-confirm-dialog">
   <template>
@@ -38,9 +39,15 @@
         padding-right: var(--lumo-space-s);
       }
 
-      .cancel-button {
+      .remember-checkbox {
         flex-grow: 1;
+        align-self: center;
         margin-left: calc(var(--lumo-space-s) * -1);
+        color: var(--lumo-secondary-text-color);
+      }
+
+      .cancel-button {
+        margin-right: calc(var(--lumo-space-s) * -1);
       }
 
       .confirm-button {
@@ -52,7 +59,7 @@
         margin-left: var(--lumo-space-s);
       }
 
-      @media (max-width: 360px) {
+      @media (max-width: 600px) {
         [part="footer"] {
           flex-direction: column-reverse;
         }
@@ -73,6 +80,10 @@
         }
 
         [part="footer"] .cancel-button {
+          margin-bottom: var(--lumo-space-s);
+        }
+
+        [part="footer"] .remember-checkbox {
           margin-bottom: var(--lumo-space-s);
         }
       }

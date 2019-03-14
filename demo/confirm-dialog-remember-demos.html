@@ -1,0 +1,183 @@
+<dom-module id="confirm-dialog-remember-demos">
+  <template>
+    <style include="vaadin-component-demo-shared-styles">
+      :host {
+        display: block;
+      }
+    </style>
+
+    <h3>Don't ask again</h3>
+    <p>
+      If you give the dialog a <code>remember-id</code>, the user will be offered an option to not
+      be shown this particular dialog again. No other code changes are needed; the dialog will trigger 
+      the appropriate event.
+    </p>
+    <vaadin-demo-snippet id="confirm-dialog-remember-demos-exit-dialog">
+      <template preserve-content>
+        <vaadin-confirm-dialog remember-id="close-editor" header="Close editor?">
+          Do you really want to close the editor?
+        </vaadin-confirm-dialog>
+
+        <vaadin-button id="open">Ask user</vaadin-button>
+        <vaadin-button id="forget">Forget answer</vaadin-button>
+        <span id="status"></span>
+        <script>
+          window.addDemoReadyListener('#confirm-dialog-remember-demos-exit-dialog', function(document) {
+            var dialog = document.querySelector('vaadin-confirm-dialog');
+            var button = document.querySelector('#open');
+            var forget = document.querySelector('#forget');
+            var status = document.querySelector('#status');
+            var count = 1;
+            button.addEventListener('click', function() {
+              status.innerText = '';
+              dialog.opened = true;
+            });
+            forget.addEventListener('click', function() {
+              dialog.forget();
+              status.innerText = count++ + '. Your answer is forgotten';
+            });
+            dialog.addEventListener('confirm', function() {
+              status.innerText = count++ + '. Confirmed';
+            });
+          });
+        </script>
+      </template>
+    </vaadin-demo-snippet>
+
+    <h3>Remember choice</h3>
+    <p>
+      Dialogs with multiple choices can automatically remember and apply the choice next time.
+    </p>
+    <vaadin-demo-snippet id="confirm-dialog-remember-demos-confirm-discard">
+      <template preserve-content>
+        <vaadin-confirm-dialog remember-id="unsaved-navigate" cancel reject header="Unsaved changes"
+            confirm-text="Save" reject-text="Discard">
+          Do you want to save or discard your changes before navigating away?
+        </vaadin-confirm-dialog>
+
+        <vaadin-button id="open">Ask user</vaadin-button>
+        <vaadin-button id="forget">Forget answer</vaadin-button>
+        <span id="status"></span>
+        <script>
+          window.addDemoReadyListener('#confirm-dialog-remember-demos-confirm-discard', function(document) {
+            var dialog = document.querySelector('vaadin-confirm-dialog');
+            var button = document.querySelector('#open');
+            var forget = document.querySelector('#forget');
+            var status = document.querySelector('#status');
+            var count = 1;
+            button.addEventListener('click', function() {
+              status.innerText = '';
+              dialog.opened = true;
+            });
+            forget.addEventListener('click', function() {
+              dialog.forget();
+              status.innerText = count++ + '. Your answer is forgotten';
+            });
+            dialog.addEventListener('confirm', function() {
+              status.innerText = count++ + '. Confirmed';
+            });
+            dialog.addEventListener('reject', function() {
+              status.innerText = count++ + '. Rejected';
+            });
+          });
+        </script>
+      </template>
+    </vaadin-demo-snippet>
+
+    <h3>Remember choice when using custom buttons</h3>
+    <p>
+      If your dialog has custom (slotted) buttons, you can make use of the built-in remember- functionality if
+      by calling the dialog <code>doConfirm()</code> and <code>doReject()</code> functions. 
+    </p>
+    <vaadin-demo-snippet id="confirm-dialog-remember-demos-custom-buttons">
+        <template preserve-content>
+          <vaadin-confirm-dialog remember-id="send" cancel reject header="Send message?"
+            reject-text="Discard">
+               <vaadin-button id="save" slot="confirm-button" theme="primary" aria-describedby="description">
+              <iron-icon icon="vaadin:envelope-open" slot="prefix"></iron-icon>
+              Send
+            </vaadin-button>
+          </vaadin-confirm-dialog>
+
+        <vaadin-button id="open">Ask user</vaadin-button>
+        <vaadin-button id="forget">Forget answer</vaadin-button>
+        <span id="status"></span>
+          <script>
+            window.addDemoReadyListener('#confirm-dialog-remember-demos-custom-buttons', function(document) {
+              var dialog = document.querySelector('vaadin-confirm-dialog');
+              var open = document.querySelector('#open');
+              var forget = document.querySelector('#forget');
+              var status = document.querySelector('#status');
+
+              var save = document.querySelector('#save');
+              save.addEventListener('click', function() {
+                dialog.doConfirm();
+              });
+
+              var count = 1;
+              open.addEventListener('click', function() {
+                status.innerText = '';
+                dialog.opened = true;
+              });
+              forget.addEventListener('click', function() {
+                dialog.forget();
+                status.innerText = count++ + '. Your answer is forgotten';
+              });
+
+              dialog.addEventListener('confirm', function() {
+                status.innerText = count++ + '. Confirmed';
+              });
+              dialog.addEventListener('reject', function() {
+                status.innerText = count++ + '. Rejected';
+              });
+            });
+          </script>
+        </template>
+      </vaadin-demo-snippet>
+
+    <h3>Reset choices</h3>
+    <p>
+      The user should be able to reset their remembered choice; you can remove individual keys 
+      by doing calling <code>forget()</code> on the dialog, or by calling 
+      <code>localStorage.removeItem()</code> directly.<br/>
+      You can also enumerate all the remembered choices and allow the user to reset each one.
+      A simple component for doing this is provided:
+    </p>
+    <vaadin-demo-snippet id="confirm-dialog-remember-demos-reset">
+      <template preserve-content>
+        <vaadin-confirm-dialog-choice-list 
+          id="list"
+          descriptions='{"send": {"title": "Send email", "description":"Confirm sending email","reject":"Discard", "confirm":"Send"}}'>
+          <b>Nothing remembered</b>
+        </vaadin-confirm-dialog-choice-list>
+        <vaadin-button id="refresh">Refresh</vaadin-button>
+        <vaadin-button id="forget">Forget all</vaadin-button>
+        <script>
+          window.addDemoReadyListener('#confirm-dialog-remember-demos-reset', function(document) {
+            var dialog = document.querySelector('vaadin-confirm-dialog');
+            var list = document.querySelector('#list');
+            var refresh = document.querySelector('#refresh');
+            var forget = document.querySelector('#forget');
+
+            refresh.addEventListener('click', function() {
+              list.refresh();
+            });
+
+            forget.addEventListener('click', function() {
+              list.forgetAll();
+            });
+          });
+        </script>
+      </template>
+    </vaadin-demo-snippet>
+ 
+  </template>
+  <script>
+    class ConfirmDialogRememberDemos extends DemoReadyEventEmitter(ElementDemo(Polymer.Element)) {
+      static get is() {
+        return 'confirm-dialog-remember-demos';
+      }
+    }
+    customElements.define(ConfirmDialogRememberDemos.is, ConfirmDialogRememberDemos);
+  </script>
+</dom-module>

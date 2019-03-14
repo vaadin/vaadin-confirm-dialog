@@ -1,0 +1,57 @@
+<!doctype html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>vaadin-confirm-dialog tests</title>
+  <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../test-fixture/test-fixture.html">
+  <link rel="import" href="../vaadin-confirm-dialog.html">
+</head>
+
+<body>
+  <test-fixture id="default">
+    <template>
+      <vaadin-confirm-dialog remember-id="dialog-test">Confirmation message</vaadin-confirm-dialog>
+    </template>
+  </test-fixture>
+
+  <script>
+    describe('Remember choice test', function() {
+      var confirm, dialog, overlay, content;
+
+      beforeEach(function() {
+        confirm = fixture('default');
+        dialog = confirm.$.dialog;
+      });
+
+      it('should remember option', function() {
+        confirm.opened = true;
+        overlay = dialog.$.overlay;
+        content = overlay.content;
+        var rememberCheckbox = content.querySelector('#remember');
+        expect(rememberCheckbox.checked).to.be.false;
+        rememberCheckbox.checked = true;
+        confirm.doConfirm();
+        expect(dialog.opened).to.be.false;
+        expect(confirm._recall()).to.equal('Confirm');
+      });
+
+      it('should apply remembered option', function() {
+        confirm.opened = true;
+        expect(dialog.opened).to.be.false;
+        expect(confirm._recall()).to.equal('Confirm');
+      });
+
+      it('should forget option', function() {
+        confirm.opened = true;
+        expect(dialog.opened).to.be.false;
+        confirm.forget();
+        confirm.opened = true;
+        expect(dialog.opened).to.be.true;
+        expect(confirm._recall()).to.be.null;
+      });
+      
+    });
+  </script>
+</body>

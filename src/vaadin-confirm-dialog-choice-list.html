@@ -1,0 +1,183 @@
+<!--
+@license
+Copyright (c) 2018 Vaadin Ltd.
+This program is available under Commercial Vaadin Add-On License 3.0 (CVALv3).
+
+See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete license.
+-->
+
+<link rel="import" href="../../polymer/polymer-element.html">
+<link rel="import" href="../../vaadin-button/src/vaadin-button.html">
+<link rel="import" href="../../vaadin-license-checker/vaadin-license-checker.html">
+
+<dom-module id="vaadin-confirm-dialog-choice-list">
+  <template>
+      <style>
+          :host {
+            display: block;
+          }
+          table {
+            width: 100%;
+            border-spacing: var(--lumo-space-s);
+            margin: calc(var(--lumo-space-s)  * -1);
+          }
+          *[hidden] { display: none; }
+        </style>
+      <table hidden$="{{_empty}}">
+        <tbody>
+          <template is="dom-repeat" items="{{_items}}">
+              <tr>
+                  <td>{{item.title}}</td>
+                  <td>{{item.description}}</td>
+                  <td>{{item.choice}}</td>
+                  <td><vaadin-button on-click="forget" theme$='{{forgetButtonTheme}}''>{{forgetButtonText}}</vaadin-button></td>
+              </tr>
+          </template>
+        </tbody>
+      </table>
+    <div hidden$="{{!_empty}}"><slot>-</slot></div>
+  </template>
+
+
+  <script>
+    (function() {
+      /**
+       * `<vaadin-confirm-dialog-choice-list>` is a simple Web Component allowing the user to see and reset choices
+       * remembered by <vaadin-confirm-dialog>.
+       *
+       * ```
+       * <vaadin-confirm-dialog-choice-list 
+       *   descriptions='{"send": {"title": "Send email", "description":"Confirm sending email","reject":"Discard", "confirm":"Send"}}'>
+       *   <b>Nothing remembered</b>
+       * </vaadin-confirm-dialog-choice-list>
+       * ```
+       * The component takes a configuration JSON that can contain textual descriptions for each `remember-id` as follows:
+       * Key           | Description
+       * --------------|---------------------------------------------------------|
+       * `title `      | A short title, usually matching the dialog title
+       * `description` | Container for the message of the dialog
+       * `reject`      | Text for `reject` choice, should match dialog button
+       * `confirm`     | Text for `confirm` choice, should match dialog button
+       *
+       * @memberof Vaadin
+       * @demo demo/index.html
+       */
+      class ConfirmDialogChoiceListElement extends Polymer.Element {
+        static get is() {
+          return 'vaadin-confirm-dialog-choice-list';
+        }
+        static get version() {
+          return '1.1.0';
+        }
+        static get properties() {
+          return {
+            _rememberIdPrefix: {
+              type: String,
+              value: 'vaadin.vaadin-confirm-dialog.choice.'
+            },
+            /**
+             * JSON allowing to specify texts for title, description, and the reject/confirm choices.
+             */
+            descriptions: {
+              type: Object,
+              value: {},
+              observer: 'refresh'
+            }, 
+            /**
+             * Text for the button used to forget the remembered choice ("Reset").
+             */
+            forgetButtonText: {
+              type: String,
+              value: 'Reset'
+            },
+            /**
+             * Theme variant used for the "forget button" ("tertiary").
+             */
+            forgetButtonTheme: {
+              type: String,
+              value: 'tertiary'
+            },
+            _items: {
+              type: Array,
+              value: []
+            },
+            _empty: {
+              type: Boolean,
+              computed: '_isEmpty(_items)'
+            }
+          };
+        }
+        constructor() {
+          super();
+          window.addEventListener('storage', this._storage.bind(this));
+          this.refresh();
+        }
+        _isEmpty(array) {
+          return !array.length;
+        }
+        _storage(e) {
+            if (e.key.startsWith(this._rememberIdPrefix)) {
+              this.refresh();
+            }
+        }
+        refresh() {
+          var choices = [];
+          for ( var i = 0, len = localStorage.length; i < len; ++i ) {
+            var key =  localStorage.key(i);
+            if (key.startsWith(this._rememberIdPrefix)) {
+              var rememberId = key.replace(this._rememberIdPrefix, '');
+              var choice = localStorage.getItem(key);
+              var item = {
+                rememberId: rememberId,
+                title: rememberId,
+                choice: choice
+              }
+              if (this.descriptions && this.descriptions[rememberId]) {
+                var d = this.descriptions[rememberId];
+                if (d.title) {
+                  item.title = d.title;
+                }
+                if (!!d[choice.substr(1)]) {
+                  item.choice = d[choice.substr(1)];
+                }
+                item.description = d.description;
+              }
+              choices.push(item);
+            }
+          }
+          this._items = choices;
+        }
+        forget(e) {
+          localStorage.removeItem(this._rememberIdPrefix + e.model.item.rememberId);
+          this.refresh();
+        }
+        forgetAll() {
+          var keys = [];
+          for ( var i = 0, len = localStorage.length; i < len; ++i ) {
+            var key =  localStorage.key(i);
+            if (key.startsWith(this._rememberIdPrefix)) {
+              keys.push(key);
+            }
+          }
+          keys.forEach(key => {
+            localStorage.removeItem(key);
+          });
+          this.refresh();
+        }
+      }
+
+      customElements.define(ConfirmDialogChoiceListElement.is, ConfirmDialogChoiceListElement);
+
+      /**
+       * @namespace Vaadin
+       */
+      window.Vaadin.ConfirmDialogChoiceListElement = ConfirmDialogChoiceListElement;
+
+      const licenseChecker = window.Vaadin.developmentModeCallback
+        && window.Vaadin.developmentModeCallback['vaadin-license-checker'];
+      if (typeof licenseChecker === 'function') {
+        licenseChecker(ConfirmDialogChoiceListElement);
+      }
+    })();
+  </script>
+</dom-module>

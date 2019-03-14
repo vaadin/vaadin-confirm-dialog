@@ -10,6 +10,16 @@
         "description": "",
         "image": ""
       }
+    },
+    {
+      "name": "Remember choice",
+      "url": "confirm-dialog-remember-demos",
+      "src": "confirm-dialog-remember-demos.html",
+      "meta": {
+        "title": "vaadin-confirm-dialog Remember Choice Examples",
+        "description": "",
+        "image": ""
+      }
     }
   ]
 }
