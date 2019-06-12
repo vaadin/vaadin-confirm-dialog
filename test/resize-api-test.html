@@ -1,0 +1,52 @@
+<!doctype html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>vaadin-confirm-dialog tests</title>
+  <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../test-fixture/test-fixture.html">
+  <link rel="import" href="../vaadin-confirm-dialog.html">
+</head>
+
+<body>
+  <test-fixture id="default">
+    <template>
+      <vaadin-confirm-dialog opened>Confirmation message</vaadin-confirm-dialog>
+    </template>
+  </test-fixture>
+
+  <script>
+    describe('Resize API test', function() {
+      var confirm, dialog, overlay, content;
+
+      beforeEach(function() {
+        confirm = fixture('default');
+        dialog = confirm.$.dialog;
+        overlay = dialog.$.overlay;
+        content = overlay.$.content;
+      });
+
+      it('should allow setting width', function() {
+        confirm._setWidth('500px');
+        expect(content.style.width).to.equal('500px');
+      });
+
+      it('Should not throw exception if _setWidth is called before attach', function() {
+        const confirm2 = new window.Vaadin.ConfirmDialogElement();
+        confirm2._setWidth('500px');
+      });
+
+      it('should allow setting height', function() {
+        confirm._setHeight('500px');
+        expect(content.style.height).to.equal('500px');
+      });
+
+      it('Should not throw exception if _setHeight is called before attach', function() {
+        const confirm2 = new window.Vaadin.ConfirmDialogElement();
+        confirm2._setHeight('500px');
+      });
+
+    });
+  </script>
+</body>

@@ -229,6 +229,11 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
         ready() {
           super.ready();
           this.$.dialog.$.overlay.addEventListener('vaadin-overlay-escape-press', this._escPressed.bind(this));
+          if (this._dimensions) {
+            for (const [name, value] of Object.entries(this._dimensions)) {
+              this._setDimension(name, value);
+            }
+          }
         }
 
         _openedChanged() {
@@ -287,11 +292,24 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
         }
 
         _setWidth(width) {
-          this.$.dialog.$.overlay.$.content.style.width = width;
+          this._setDimensionIfAttached('width', width);
         }
 
         _setHeight(height) {
-          this.$.dialog.$.overlay.$.content.style.height = height;
+          this._setDimensionIfAttached('height', height);
+        }
+
+        _setDimensionIfAttached(name, value) {
+          if (this.$ && this.$.dialog) {
+            this._setDimension(name, value);
+          } else {
+            this._dimensions = this._dimensions || {};
+            this._dimensions[name] = value;
+          }
+        }
+
+        _setDimension(name, value) {
+          this.$.dialog.$.overlay.$.content.style[name] = value;
         }
       }
 
