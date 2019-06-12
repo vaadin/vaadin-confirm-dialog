@@ -35,6 +35,9 @@
       it('Should not throw exception if _setWidth is called before attach', function() {
         const confirm2 = new window.Vaadin.ConfirmDialogElement();
         confirm2._setWidth('500px');
+        document.body.appendChild(confirm2);
+        const content2 = confirm2.$.dialog.$.overlay.$.content;
+        expect(content2.style.width).to.equal('500px');
       });
 
       it('should allow setting height', function() {
@@ -45,6 +48,9 @@
       it('Should not throw exception if _setHeight is called before attach', function() {
         const confirm2 = new window.Vaadin.ConfirmDialogElement();
         confirm2._setHeight('500px');
+        document.body.appendChild(confirm2);
+        const content2 = confirm2.$.dialog.$.overlay.$.content;
+        expect(content2.style.height).to.equal('500px');
       });
 
     });
