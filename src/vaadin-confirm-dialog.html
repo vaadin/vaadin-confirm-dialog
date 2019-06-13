@@ -230,9 +230,9 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
           super.ready();
           this.$.dialog.$.overlay.addEventListener('vaadin-overlay-escape-press', this._escPressed.bind(this));
           if (this._dimensions) {
-            for (const [name, value] of Object.entries(this._dimensions)) {
-              this._setDimension(name, value);
-            }
+            Object.keys(this._dimensions).forEach(name => {
+              this._setDimension(name, this._dimensions[name]);
+            });
           }
         }
 
