@@ -18,13 +18,16 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
     <style>
       :host {
         display: none;
+        --_vaadin-confirm-dialog-content-width: auto;
+        --_vaadin-confirm-dialog-content-height: auto;
       }
 
       [part="content"] {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 100%;
+        width: var(--_vaadin-confirm-dialog-content-width);
+        height: var(--_vaadin-confirm-dialog-content-height);
       }
 
       [part="message"] {
