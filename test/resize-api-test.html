@@ -41,7 +41,7 @@
       it('should allow setting width', function(done) {
         confirm._setWidth('500px');
         waitForTransition(confirm, function() {
-          expect(getConfirmDialogContent(confirm).getBoundingClientRect().width).to.be.equal(500);
+          expect(getConfirmDialogContent(confirm).getBoundingClientRect().width).to.be.approximately(500, 2);
           done();
         });
       });
@@ -57,7 +57,7 @@
         expect(spy.calledWith('width', '150px')).to.be.true;
 
         waitForTransition(confirmNotAttached, function() {
-          expect(getConfirmDialogContent(confirmNotAttached).getBoundingClientRect().width).to.equal(150);
+          expect(getConfirmDialogContent(confirmNotAttached).getBoundingClientRect().width).to.approximately(150, 2);
           done();
         });
       });
@@ -65,7 +65,7 @@
       it('should allow setting height', function(done) {
         confirm._setHeight('500px');
         waitForTransition(confirm, function() {
-          expect(getConfirmDialogContent(confirm).getBoundingClientRect().height).to.be.equal(500);
+          expect(getConfirmDialogContent(confirm).getBoundingClientRect().height).to.be.approximately(500, 2);
           done();
         });
       });
@@ -81,7 +81,7 @@
         expect(spy.calledWith('height', '150px')).to.be.true;
 
         waitForTransition(confirmNotAttached, function() {
-          expect(getConfirmDialogContent(confirmNotAttached).getBoundingClientRect().height).to.equal(150);
+          expect(getConfirmDialogContent(confirmNotAttached).getBoundingClientRect().height).to.be.approximately(150, 2);
           done();
         });
       });
