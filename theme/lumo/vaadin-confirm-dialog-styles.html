@@ -6,6 +6,10 @@
 <dom-module id="lumo-confirm-dialog" theme-for="vaadin-confirm-dialog">
   <template>
     <style>
+      [part="content"] {
+        height: calc(100% - var(--_vaadin-confirm-dialog-footer-height) - var(--lumo-space-s));
+      }
+
       .header {
         margin-top: var(--lumo-space-s);
         margin-bottom: var(--lumo-space-m);
