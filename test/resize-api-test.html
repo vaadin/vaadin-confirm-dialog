@@ -90,7 +90,6 @@
         expect(spy.calledWith('height', '200px')).to.be.true;
 
         waitForTransition(confirmNotAttached, function() {
-          // debugger
           expect(getComputedStyle(getConfirmDialogContent(confirmNotAttached)).height).to.be.equal('200px');
           done();
         });
