@@ -2,7 +2,8 @@
   <template>
     <style>
       [part="content"] {
-        height: calc(100% - var(--_vaadin-confirm-dialog-footer-height) - 39px);
+        height: calc(var(--_vaadin-confirm-dialog-content-height) - var(--_vaadin-confirm-dialog-footer-height) - 39px);
+        width: var(--_vaadin-confirm-dialog-content-width);
       }
 
       [part="message"] {

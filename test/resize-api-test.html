@@ -12,7 +12,7 @@
 <body>
   <test-fixture id="default">
     <template>
-      <vaadin-confirm-dialog opened>Confirmation message</vaadin-confirm-dialog>
+      <vaadin-confirm-dialog opened header="Title">Confirmation message</vaadin-confirm-dialog>
     </template>
   </test-fixture>
 
@@ -38,16 +38,25 @@
         return confirmDialog && confirmDialog.$.dialog.$.overlay.$.content;
       }
 
+      function createConfirmDialog() {
+        const dialog = new window.Vaadin.ConfirmDialogElement();
+
+        dialog.header = 'Dialog title';
+        dialog.message = 'Dialog message';
+
+        return dialog;
+      }
+
       it('should allow setting width', function(done) {
-        confirm._setWidth('500px');
+        confirm._setWidth('300px');
         waitForTransition(confirm, function() {
-          expect(getComputedStyle(getConfirmDialogContent(confirm)).width).to.be.equal('500px');
+          expect(getComputedStyle(getConfirmDialogContent(confirm)).width).to.be.equal('300px');
           done();
         });
       });
 
       it('Should not throw exception if _setWidth is called before attach', function(done) {
-        const confirmNotAttached = new window.Vaadin.ConfirmDialogElement();
+        const confirmNotAttached = createConfirmDialog();
         const spy = sinon.spy(confirmNotAttached, '_setDimension');
 
         confirmNotAttached._setWidth('200px');
@@ -71,17 +80,18 @@
       });
 
       it('Should not throw exception if _setHeight is called before attach', function(done) {
-        const confirmNotAttached = new window.Vaadin.ConfirmDialogElement();
+        const confirmNotAttached = createConfirmDialog();
         const spy = sinon.spy(confirmNotAttached, '_setDimension');
 
-        confirmNotAttached._setHeight('150px');
+        confirmNotAttached._setHeight('200px');
         document.body.appendChild(confirmNotAttached);
         confirmNotAttached.opened = true;
 
-        expect(spy.calledWith('height', '150px')).to.be.true;
+        expect(spy.calledWith('height', '200px')).to.be.true;
 
         waitForTransition(confirmNotAttached, function() {
-          expect(getComputedStyle(getConfirmDialogContent(confirmNotAttached)).height).to.be.equal('150px');
+          // debugger
+          expect(getComputedStyle(getConfirmDialogContent(confirmNotAttached)).height).to.be.equal('200px');
           done();
         });
       });
