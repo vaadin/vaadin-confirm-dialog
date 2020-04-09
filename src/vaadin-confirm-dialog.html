@@ -254,7 +254,7 @@ See <a href="https://vaadin.com/license/cval-3">the website</a> for the complete
         __toggleContentRTL(rtl) {
           const contentBlock = this.$.dialog.$.overlay.content.querySelector('#content');
           const footerBlock = this.$.dialog.$.overlay.content.querySelector('[part=footer]');
-          if(rtl) {
+          if (rtl) {
             contentBlock.setAttribute('dir', 'rtl');
             footerBlock.setAttribute('dir', 'rtl');
           } else {
