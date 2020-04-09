@@ -20,8 +20,8 @@
         margin-right: -16px;
       }
 
-      :host(:not([dir="rtl"])) [part="footer"] div:nth-child(-n + 2) vaadin-button,
-      :host(:not([dir="rtl"])) [part="footer"] div:nth-child(-n + 2) ::slotted(*) {
+      [part="footer"]:not([dir="rtl"]) div:nth-child(-n + 2) vaadin-button,
+      [part="footer"]:not([dir="rtl"]) div:nth-child(-n + 2) ::slotted(*) {
         margin-right: 8px;
       }
 
@@ -44,26 +44,26 @@
 
         /* RTL specific styles */
 
-        :host([dir="rtl"]) [part="footer"] div:nth-child(-n + 2) vaadin-button,
-        :host([dir="rtl"]) [part="footer"] div:nth-child(-n + 2) ::slotted(*) {
+        [part="footer"][dir="rtl"] div:nth-child(-n + 2) vaadin-button,
+        [part="footer"][dir="rtl"] div:nth-child(-n + 2) ::slotted(*) {
           margin-left: 0;
         }
       }
 
       /* RTL specific styles */
 
-      :host([dir="rtl"]) [part="message"] {
+      [dir="rtl"] > [part="message"] {
         margin-left: 24px;
         margin-right: 0;
       }
 
-      :host([dir="rtl"]) [part="footer"] {
+      [part="footer"][dir="rtl"] {
         margin-left: -16px;
         margin-right: 0;
       }
 
-      :host([dir="rtl"]) [part="footer"] div:nth-child(-n + 2) vaadin-button,
-      :host([dir="rtl"]) [part="footer"] div:nth-child(-n + 2) ::slotted(*) {
+      [part="footer"][dir="rtl"] div:nth-child(-n + 2) vaadin-button,
+      [part="footer"][dir="rtl"] div:nth-child(-n + 2) ::slotted(*) {
         margin-left: 8px;
       }
     </style>

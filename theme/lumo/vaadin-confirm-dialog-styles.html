@@ -58,16 +58,16 @@
         flex-grow: 1;
       }
 
-      :host(:not([dir="rtl"])) .cancel-button {
+      :not([dir="rtl"]) >.cancel-button {
         margin-left: calc(var(--lumo-space-s) * -1);
       }
 
-      :host(:not([dir="rtl"])) .confirm-button {
+      :not([dir="rtl"]) > .confirm-button {
         margin-right: calc(var(--lumo-space-s) * -1);
       }
 
-      :host(:not([dir="rtl"])) .reject-button,
-      :host(:not([dir="rtl"])) .confirm-button {
+      :not([dir="rtl"]) > .reject-button,
+      :not([dir="rtl"]) > .confirm-button {
         margin-left: var(--lumo-space-s);
       }
 
@@ -98,17 +98,17 @@
 
       /* RTL specific styles */
 
-      :host([dir="rtl"]) .cancel-button {
+      [dir="rtl"] > .cancel-button {
         flex-grow: 1;
         margin-right: calc(var(--lumo-space-s) * -1);
       }
 
-      :host([dir="rtl"]) .confirm-button {
+      [dir="rtl"] > .confirm-button {
         margin-left: calc(var(--lumo-space-s) * -1);
       }
 
-      :host([dir="rtl"]) .reject-button,
-      :host([dir="rtl"]) .confirm-button {
+      [dir="rtl"] > .reject-button,
+      [dir="rtl"] > .confirm-button {
         margin-right: var(--lumo-space-s);
       }
     </style>
