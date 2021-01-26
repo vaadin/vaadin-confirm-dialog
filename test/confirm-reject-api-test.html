@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>vaadin-confirm-dialog tests</title>
-  <script src="../../web-component-tester/browser.js"></script>
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="../../test-fixture/test-fixture.html">
-  <link rel="import" href="../vaadin-confirm-dialog.html">
+  <script src="../../../wct-browser-legacy/browser.js"></script>
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script type="module" src="../../../@polymer/test-fixture/test-fixture.js"></script>
+  <script type="module" src="../vaadin-confirm-dialog.js"></script>
 </head>
 
 <body>
@@ -16,23 +16,25 @@
     </template>
   </test-fixture>
 
-  <script>
-    describe('Confirm Reject dialog test', function() {
-      var confirm, dialog, overlay, content;
+  <script type="module">
+import '@polymer/test-fixture/test-fixture.js';
+import '../vaadin-confirm-dialog.js';
+describe('Confirm Reject dialog test', function() {
+  var confirm, dialog, overlay, content;
 
-      beforeEach(function() {
-        confirm = fixture('default');
-        dialog = confirm.$.dialog;
-        overlay = dialog.$.overlay;
-        content = overlay.content;
-      });
+  beforeEach(function() {
+    confirm = fixture('default');
+    dialog = confirm.$.dialog;
+    overlay = dialog.$.overlay;
+    content = overlay.content;
+  });
 
-      it('should all the buttons be visible by default', function() {
-        var buttons = content.querySelectorAll('vaadin-button');
-        Array.from(buttons).forEach(b => {
-          expect(b.hidden).to.be.false;
-        });
-      });
+  it('should all the buttons be visible by default', function() {
+    var buttons = content.querySelectorAll('vaadin-button');
+    Array.from(buttons).forEach(b => {
+      expect(b.hidden).to.be.false;
     });
-  </script>
+  });
+});
+</script>
 </body>

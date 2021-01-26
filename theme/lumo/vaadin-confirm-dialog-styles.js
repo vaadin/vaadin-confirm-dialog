@@ -1,9 +1,10 @@
-<link rel="import" href="../../../vaadin-lumo-styles/color.html">
-<link rel="import" href="../../../vaadin-lumo-styles/spacing.html">
-<link rel="import" href="../../../vaadin-dialog/theme/lumo/vaadin-dialog.html">
-<link rel="import" href="../../../vaadin-button/theme/lumo/vaadin-button.html">
+import '@vaadin/vaadin-lumo-styles/color.js';
+import '@vaadin/vaadin-lumo-styles/spacing.js';
+import '@vaadin/vaadin-dialog/theme/lumo/vaadin-dialog.js';
+import '@vaadin/vaadin-button/theme/lumo/vaadin-button.js';
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 
-<dom-module id="lumo-confirm-dialog-overlay" theme-for="vaadin-dialog-overlay">
+const $_documentContainer = html`<dom-module id="lumo-confirm-dialog-overlay" theme-for="vaadin-dialog-overlay">
   <template>
     <style>
       :host([theme~="_vaadin-confirm-dialog-dialog-overlay-theme"]) [part="content"] {
@@ -12,9 +13,7 @@
       }
     </style>
   </template>
-</dom-module>
-
-<dom-module id="lumo-confirm-dialog" theme-for="vaadin-confirm-dialog">
+</dom-module><dom-module id="lumo-confirm-dialog" theme-for="vaadin-confirm-dialog">
   <template>
     <style>
       #content {
@@ -112,4 +111,6 @@
       }
     </style>
   </template>
-</dom-module>
+</dom-module>`;
+
+document.head.appendChild($_documentContainer.content);

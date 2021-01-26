@@ -1,4 +1,6 @@
-<dom-module id="material-confirm-dialog" theme-for="vaadin-confirm-dialog">
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+
+const $_documentContainer = html`<dom-module id="material-confirm-dialog" theme-for="vaadin-confirm-dialog">
   <template>
     <style>
       #content {
@@ -68,9 +70,7 @@
       }
     </style>
   </template>
-</dom-module>
-
-<dom-module id="material-confirm-dialog-overlay" theme-for="vaadin-dialog-overlay">
+</dom-module><dom-module id="material-confirm-dialog-overlay" theme-for="vaadin-dialog-overlay">
   <template>
     <style include="material-vaadin-overlay">
       :host([theme~="_vaadin-confirm-dialog-dialog-overlay-theme"]) [part="overlay"] {
@@ -86,4 +86,6 @@
       }
     </style>
   </template>
-</dom-module>
+</dom-module>`;
+
+document.head.appendChild($_documentContainer.content);
