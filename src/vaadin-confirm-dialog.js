@@ -4,7 +4,6 @@
  * This program is available under Commercial Vaadin Developer License 4.0, available at https://vaadin.com/license/cvdl-4.0.
  */
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import { beforeNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 import { ThemableMixin } from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
 import '@vaadin/vaadin-license-checker/vaadin-license-checker.js';
@@ -302,15 +301,15 @@ class ConfirmDialogElement extends ElementMixin(ThemableMixin(PolymerElement)) {
       }
     });
 
-    this.opened && this.__toggleContentRTL(this.__isRTL);
+    this.__toggleContentRTL(this.__isRTL);
 
-    beforeNextRender(this, () => {
+    requestAnimationFrame(() => {
       var confirmButton = this._confirmButton || this.$.dialog.$.overlay.content.querySelector('#confirm');
       confirmButton.focus();
 
       const {height} = getComputedStyle(this.$.dialog.$.overlay.content.querySelector('[part=footer]'));
       if (height != this._footerHeight) {
-        window.ShadyCSS.styleSubtree(this.$.dialog.$.overlay, {'--_vaadin-confirm-dialog-footer-height': height});
+        this.$.dialog.$.overlay.style.setProperty('--_vaadin-confirm-dialog-footer-height', height);
         this._footerHeight = height;
       }
     });
@@ -368,17 +367,7 @@ class ConfirmDialogElement extends ElementMixin(ThemableMixin(PolymerElement)) {
 
   /** @private */
   _setDimension(name, value) {
-    this._propsToUpdate = this._propsToUpdate || {};
-
-    this._propsToUpdate[`--_vaadin-confirm-dialog-content-${name}`] = value;
-
-    // To prevent multiple calls to update CSS props
-    beforeNextRender(this, () => {
-      if (this._propsToUpdate) {
-        window.ShadyCSS.styleSubtree(this.$.dialog.$.overlay, this._propsToUpdate);
-        this._propsToUpdate = null;
-      }
-    });
+    this.$.dialog.$.overlay.style.setProperty(`--_vaadin-confirm-dialog-content-${name}`, value);
   }
 
   /**
