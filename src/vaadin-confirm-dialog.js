@@ -5,15 +5,13 @@ This program is available under Commercial Vaadin Developer License 4.0 (CVDLv4)
 
 See <a href="https://vaadin.com/license/cvdl-4.0">the website</a> for the complete license.
 */
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import { beforeNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 import { ThemableMixin } from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
 import '@vaadin/vaadin-license-checker/vaadin-license-checker.js';
 import '@vaadin/vaadin-button/src/vaadin-button.js';
 import '@vaadin/vaadin-dialog/src/vaadin-dialog.js';
-import { html } from '@polymer/polymer/lib/utils/html-tag.js';
-import { beforeNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
 /**
  * `<vaadin-confirm-dialog>` is a Web Component for showing alerts and asking for user confirmation.
