@@ -50,7 +50,7 @@ import { beforeNextRender } from '@polymer/polymer/lib/utils/render-status.js';
  *
  * See examples of setting custom buttons into slots in the live demos.
  *
- * @extends PolymerElement
+ * @extends HTMLElement
  * @mixes ElementMixin
  * @mixes ThemableMixin
  */

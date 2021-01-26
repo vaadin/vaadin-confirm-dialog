@@ -1,12 +1,6 @@
-import {PolymerElement} from '@polymer/polymer/polymer-element.js';
-
 import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 
 import {ElementMixin} from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
-
-import {html} from '@polymer/polymer/lib/utils/html-tag.js';
-
-import {beforeNextRender} from '@polymer/polymer/lib/utils/render-status.js';
 
 /**
  * `<vaadin-confirm-dialog>` is a Web Component for showing alerts and asking for user confirmation.
@@ -46,7 +40,7 @@ import {beforeNextRender} from '@polymer/polymer/lib/utils/render-status.js';
 declare class ConfirmDialogElement extends
   ElementMixin(
   ThemableMixin(
-  PolymerElement)) {
+  HTMLElement)) {
 
   /**
    * True if the overlay is currently displayed.
@@ -114,9 +108,6 @@ declare class ConfirmDialogElement extends
    * @attr {string} cancel-theme
    */
   cancelTheme: string;
-  static _finalizeClass(): void;
-  ready(): void;
-  attributeChangedCallback(name: string, oldValue: string|null, newValue: string|null): void;
 }
 
 declare global {
