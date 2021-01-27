@@ -176,8 +176,7 @@ class ConfirmDialogElement extends ElementMixin(ThemableMixin(PolymerElement)) {
       reject: {
         type: Boolean,
         reflectToAttribute: true,
-        value: false,
-        notify: true
+        value: false
       },
 
       /**
@@ -207,8 +206,7 @@ class ConfirmDialogElement extends ElementMixin(ThemableMixin(PolymerElement)) {
       cancel: {
         type: Boolean,
         reflectToAttribute: true,
-        value: false,
-        notify: true
+        value: false
       },
 
       /**
