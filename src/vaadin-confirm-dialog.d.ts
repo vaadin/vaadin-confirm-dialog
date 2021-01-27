@@ -52,8 +52,6 @@ export type ConfirmDialogEventMap = HTMLElementEventMap & ConfirmDialogElementEv
  * `reject-button`   | Container for the Reject button
  * `confirm-button`  | Container for the Confirm button
  *
- * See examples of setting custom buttons into slots in the live demos.
- *
  * @fires {Event} confirm - Fired when Confirm button was pressed.
  * @fires {Event} cancel - Fired when Cancel button or Escape key was pressed.
  * @fires {Event} reject - Fired when Reject button was pressed.
