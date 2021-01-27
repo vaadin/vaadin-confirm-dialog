@@ -53,6 +53,11 @@ export type ConfirmDialogEventMap = HTMLElementEventMap & ConfirmDialogElementEv
  * `confirm-button`  | Container for the Confirm button
  *
  * See examples of setting custom buttons into slots in the live demos.
+ *
+ * @fires {Event} confirm - Fired when Confirm button was pressed.
+ * @fires {Event} cancel - Fired when Cancel button or Escape key was pressed.
+ * @fires {Event} reject - Fired when Reject button was pressed.
+ * @fires {CustomEvent} opened-changed - Fired when the `opened` property changes.
  */
 declare class ConfirmDialogElement extends ElementMixin(ThemableMixin(HTMLElement)) {
   /**
