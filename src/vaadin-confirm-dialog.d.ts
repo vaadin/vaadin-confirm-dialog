@@ -6,8 +6,8 @@ import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.
  * `<vaadin-confirm-dialog>` is a Web Component for showing alerts and asking for user confirmation.
  *
  * ```
- * <vaadin-confirm-dialog on-confirm="_doConfirm">
- *  Sample confirmation question
+ * <vaadin-confirm-dialog cancel>
+ *   There are unsaved changes. Do you really want to leave?
  * </vaadin-confirm-dialog>
  * ```
  *
