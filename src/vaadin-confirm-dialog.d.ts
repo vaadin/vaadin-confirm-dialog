@@ -1,6 +1,6 @@
-import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
+import { ThemableMixin } from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 
-import {ElementMixin} from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
+import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
 
 /**
  * `<vaadin-confirm-dialog>` is a Web Component for showing alerts and asking for user confirmation.
@@ -37,11 +37,7 @@ import {ElementMixin} from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js
  *
  * See examples of setting custom buttons into slots in the live demos.
  */
-declare class ConfirmDialogElement extends
-  ElementMixin(
-  ThemableMixin(
-  HTMLElement)) {
-
+declare class ConfirmDialogElement extends ElementMixin(ThemableMixin(HTMLElement)) {
   /**
    * True if the overlay is currently displayed.
    */
@@ -55,7 +51,7 @@ declare class ConfirmDialogElement extends
   /**
    * Set the message or confirmation question.
    */
-  message: string|null|undefined;
+  message: string | null | undefined;
 
   /**
    * Text displayed on confirm-button.
@@ -111,10 +107,9 @@ declare class ConfirmDialogElement extends
 }
 
 declare global {
-
   interface HTMLElementTagNameMap {
-    "vaadin-confirm-dialog": ConfirmDialogElement;
+    'vaadin-confirm-dialog': ConfirmDialogElement;
   }
 }
 
-export {ConfirmDialogElement};
+export { ConfirmDialogElement };

@@ -52,60 +52,80 @@ import '@vaadin/vaadin-dialog/src/vaadin-dialog.js';
 class ConfirmDialogElement extends ElementMixin(ThemableMixin(PolymerElement)) {
   static get template() {
     return html`
-    <style>
-      :host {
-        display: none;
-        --_vaadin-confirm-dialog-content-width: auto;
-        --_vaadin-confirm-dialog-content-height: auto;
-        --_vaadin-confirm-dialog-footer-height: auto;
-      }
-    </style>
-    <vaadin-dialog id="dialog" opened="{{opened}}" aria-label="[[_getAriaLabel(header)]]" theme\$="_vaadin-confirm-dialog-dialog-overlay-theme [[theme]]" no-close-on-outside-click="" no-close-on-esc="[[noCloseOnEsc]]">
-      <template>
-        <div id="content">
-          <div part="header">
-            <slot name="header">
-              <h3 class="header">[[header]]</h3>
-            </slot>
+      <style>
+        :host {
+          display: none;
+          --_vaadin-confirm-dialog-content-width: auto;
+          --_vaadin-confirm-dialog-content-height: auto;
+          --_vaadin-confirm-dialog-footer-height: auto;
+        }
+      </style>
+      <vaadin-dialog
+        id="dialog"
+        opened="{{opened}}"
+        aria-label="[[_getAriaLabel(header)]]"
+        theme$="_vaadin-confirm-dialog-dialog-overlay-theme [[theme]]"
+        no-close-on-outside-click
+        no-close-on-esc="[[noCloseOnEsc]]"
+      >
+        <template>
+          <div id="content">
+            <div part="header">
+              <slot name="header">
+                <h3 class="header">[[header]]</h3>
+              </slot>
+            </div>
+
+            <div part="message" id="message">
+              <slot></slot>
+              [[message]]
+            </div>
           </div>
 
-          <div part="message" id="message">
-            <slot></slot>
-            [[message]]
+          <div part="footer">
+            <div class="cancel-button">
+              <slot name="cancel-button">
+                <vaadin-button
+                  id="cancel"
+                  theme$="[[cancelTheme]]"
+                  on-click="_cancel"
+                  hidden$="[[!cancel]]"
+                  aria-describedby="message"
+                >
+                  [[cancelText]]
+                </vaadin-button>
+              </slot>
+            </div>
+            <div class="reject-button">
+              <slot name="reject-button">
+                <vaadin-button
+                  id="reject"
+                  theme$="[[rejectTheme]]"
+                  on-click="_reject"
+                  hidden$="[[!reject]]"
+                  aria-describedby="message"
+                >
+                  [[rejectText]]
+                </vaadin-button>
+              </slot>
+            </div>
+            <div class="confirm-button">
+              <slot name="confirm-button">
+                <vaadin-button id="confirm" theme$="[[confirmTheme]]" on-click="_confirm" aria-describedby="message">
+                  [[confirmText]]
+                </vaadin-button>
+              </slot>
+            </div>
           </div>
-        </div>
-
-        <div part="footer">
-          <div class="cancel-button">
-            <slot name="cancel-button">
-              <vaadin-button id="cancel" theme\$="[[cancelTheme]]" on-click="_cancel" hidden\$="[[!cancel]]" aria-describedby="message">
-                [[cancelText]]
-              </vaadin-button>
-            </slot>
-          </div>
-          <div class="reject-button">
-            <slot name="reject-button">
-              <vaadin-button id="reject" theme\$="[[rejectTheme]]" on-click="_reject" hidden\$="[[!reject]]" aria-describedby="message">
-                [[rejectText]]
-              </vaadin-button>
-            </slot>
-          </div>
-          <div class="confirm-button">
-            <slot name="confirm-button">
-              <vaadin-button id="confirm" theme\$="[[confirmTheme]]" on-click="_confirm" aria-describedby="message">
-                [[confirmText]]
-              </vaadin-button>
-            </slot>
-          </div>
-        </div>
-      </template>
-    </vaadin-dialog>
-`;
+        </template>
+      </vaadin-dialog>
+    `;
   }
 
   static get is() {
     return 'vaadin-confirm-dialog';
   }
+
   static get version() {
     return '2.0.0';
   }
@@ -253,7 +273,7 @@ class ConfirmDialogElement extends ElementMixin(ThemableMixin(PolymerElement)) {
     super.ready();
     this.$.dialog.$.overlay.addEventListener('vaadin-overlay-escape-press', this._escPressed.bind(this));
     if (this._dimensions) {
-      Object.keys(this._dimensions).forEach(name => {
+      Object.keys(this._dimensions).forEach((name) => {
         this._setDimension(name, this._dimensions[name]);
       });
     }
@@ -295,7 +315,7 @@ class ConfirmDialogElement extends ElementMixin(ThemableMixin(PolymerElement)) {
 
     const overlay = this.$.dialog.$.overlay;
 
-    Array.from(this.childNodes).forEach(c => {
+    Array.from(this.childNodes).forEach((c) => {
       const newChild = overlay.$.content.appendChild(c);
       if (newChild.getAttribute && newChild.getAttribute('slot') == 'confirm-button' && newChild.focus) {
         this._confirmButton = newChild;
@@ -308,7 +328,7 @@ class ConfirmDialogElement extends ElementMixin(ThemableMixin(PolymerElement)) {
       const confirmButton = this._confirmButton || overlay.content.querySelector('#confirm');
       confirmButton.focus();
 
-      const {height} = getComputedStyle(overlay.content.querySelector('[part=footer]'));
+      const { height } = getComputedStyle(overlay.content.querySelector('[part=footer]'));
       this.$.dialog.$.overlay.style.setProperty('--_vaadin-confirm-dialog-footer-height', height);
     });
   }
