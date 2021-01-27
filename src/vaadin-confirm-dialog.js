@@ -295,8 +295,10 @@ class ConfirmDialogElement extends ElementMixin(ThemableMixin(PolymerElement)) {
       return;
     }
 
+    const overlay = this.$.dialog.$.overlay;
+
     Array.from(this.childNodes).forEach(c => {
-      var newChild = this.$.dialog.$.overlay.$.content.appendChild(c);
+      const newChild = overlay.$.content.appendChild(c);
       if (newChild.getAttribute && newChild.getAttribute('slot') == 'confirm-button' && newChild.focus) {
         this._confirmButton = newChild;
       }
@@ -305,14 +307,11 @@ class ConfirmDialogElement extends ElementMixin(ThemableMixin(PolymerElement)) {
     this.__toggleContentRTL(this.__isRTL);
 
     requestAnimationFrame(() => {
-      var confirmButton = this._confirmButton || this.$.dialog.$.overlay.content.querySelector('#confirm');
+      const confirmButton = this._confirmButton || overlay.content.querySelector('#confirm');
       confirmButton.focus();
 
-      const {height} = getComputedStyle(this.$.dialog.$.overlay.content.querySelector('[part=footer]'));
-      if (height != this._footerHeight) {
-        this.$.dialog.$.overlay.style.setProperty('--_vaadin-confirm-dialog-footer-height', height);
-        this._footerHeight = height;
-      }
+      const {height} = getComputedStyle(overlay.content.querySelector('[part=footer]'));
+      this.$.dialog.$.overlay.style.setProperty('--_vaadin-confirm-dialog-footer-height', height);
     });
   }
 
