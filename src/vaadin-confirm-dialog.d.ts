@@ -3,6 +3,23 @@ import { ThemableMixin } from '@vaadin/vaadin-themable-mixin/vaadin-themable-mix
 import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
 
 /**
+ * Fired when the `opened` property changes.
+ */
+export type ConfirmDialogOpenedChanged = CustomEvent<{ value: boolean }>;
+
+export interface ConfirmDialogElementEventMap {
+  'opened-changed': ConfirmDialogOpenedChanged;
+
+  confirm: Event;
+
+  cancel: Event;
+
+  reject: Event;
+}
+
+export type ConfirmDialogEventMap = HTMLElementEventMap & ConfirmDialogElementEventMap;
+
+/**
  * `<vaadin-confirm-dialog>` is a Web Component for showing alerts and asking for user confirmation.
  *
  * ```
@@ -104,6 +121,18 @@ declare class ConfirmDialogElement extends ElementMixin(ThemableMixin(HTMLElemen
    * @attr {string} cancel-theme
    */
   cancelTheme: string;
+
+  addEventListener<K extends keyof ConfirmDialogEventMap>(
+    type: K,
+    listener: (this: ConfirmDialogElement, ev: ConfirmDialogEventMap[K]) => void,
+    options?: boolean | AddEventListenerOptions
+  ): void;
+
+  removeEventListener<K extends keyof ConfirmDialogEventMap>(
+    type: K,
+    listener: (this: ConfirmDialogElement, ev: ConfirmDialogEventMap[K]) => void,
+    options?: boolean | EventListenerOptions
+  ): void;
 }
 
 declare global {
