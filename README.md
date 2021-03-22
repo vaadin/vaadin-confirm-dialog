@@ -3,6 +3,12 @@
 
 # &lt;vaadin-confirm-dialog&gt;
 
+> ⚠️ 　Starting from Vaadin 20, this project has migrated to [`vaadin-web-components`](https://github.com/vaadin/vaadin-web-components/tree/master/packages/vaadin-confirm-dialog) *monorepository*.
+>
+> This repository is used for Vaadin 14 LTS and Vaadin 19.
+
+---
+
 [Live Demo ↗](https://vaadin.com/components/vaadin-confirm-dialog/html-examples)
 |
 [API documentation ↗](https://vaadin.com/components/vaadin-confirm-dialog/html-api)
