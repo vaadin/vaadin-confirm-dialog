@@ -1,14 +1,16 @@
-[![Build Status](https://travis-ci.org/vaadin/vaadin-confirm-dialog.svg?branch=master)](https://travis-ci.org/vaadin/vaadin-confirm-dialog)
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaadin/web-components?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
 # &lt;vaadin-confirm-dialog&gt;
+
+> ⚠️ Starting from Vaadin 20, the source code and issues for this component are migrated to the [`vaadin/web-components`](https://github.com/vaadin/web-components/tree/master/packages/vaadin-confirm-dialog) monorepository.
+> This repository contains the source code and releases of `<vaadin-confirm-dialog>` for the Vaadin versions 10 to 19.
+
+[&lt;vaadin-confirm-dialog&gt;](https://vaadin.com/components/vaadin-confirm-dialog) is a Web Component providing an easy way to ask the user to confirm a choice, part of the [Vaadin components](https://vaadin.com/components).
 
 [Live Demo ↗](https://vaadin.com/components/vaadin-confirm-dialog/html-examples)
 |
 [API documentation ↗](https://vaadin.com/components/vaadin-confirm-dialog/html-api)
 
-
-[&lt;vaadin-confirm-dialog&gt;](https://vaadin.com/components/vaadin-confirm-dialog) is a Web Component providing an easy way to ask the user to confirm a choice, part of the [Vaadin components](https://vaadin.com/components).
+[![Build Status](https://travis-ci.org/vaadin/vaadin-confirm-dialog.svg?branch=master)](https://travis-ci.org/vaadin/vaadin-confirm-dialog)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaadin/web-components?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ```html
 <vaadin-confirm-dialog header="Unsaved changes" confirm-text="Save" on-confirm="save"
