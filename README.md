@@ -9,8 +9,9 @@
 |
 [API documentation ↗](https://vaadin.com/components/vaadin-confirm-dialog/html-api)
 
-[![Build Status](https://travis-ci.org/vaadin/vaadin-confirm-dialog.svg?branch=master)](https://travis-ci.org/vaadin/vaadin-confirm-dialog)
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaadin/web-components?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![npm version](https://badgen.net/npm/v/@vaadin/vaadin-confirm-dialog)](https://www.npmjs.com/package/@vaadin/vaadin-confirm-dialog)
+[![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/vaadinvaadin-confirm-dialog)
+[![Discord](https://img.shields.io/discord/732335336448852018?label=discord)](https://discord.gg/PHmkCKC)
 
 ```html
 <vaadin-confirm-dialog header="Unsaved changes" confirm-text="Save" on-confirm="save"
