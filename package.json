@@ -13,6 +13,7 @@
   ],
   "author": "Vaadin Ltd",
   "license": "https://raw.githubusercontent.com/vaadin/vaadin-confirm-dialog/master/LICENSE",
+  "cvdlName": "vaadin-confirm-dialog",
   "bugs": {
     "url": "https://github.com/vaadin/vaadin-confirm-dialog/issues"
   },
